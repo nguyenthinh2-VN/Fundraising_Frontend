@@ -225,7 +225,7 @@ const currentYear = 2025;
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: var(--spacing-sm);
+  flex-wrap: wrap;
   margin-bottom: var(--spacing-sm);
 }
 

@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router";
+import { onMounted, ref } from "vue";
 
 const slides = [
   {
@@ -33,16 +34,39 @@ const slides = [
     alt: "Hoạt động y tế",
   },
 ];
+
+const carouselRef = ref(null);
+let carouselInstance = null;
+
+onMounted(() => {
+  // Import Bootstrap Carousel and initialize
+  import("bootstrap").then((bootstrap) => {
+    if (carouselRef.value) {
+      carouselInstance = new bootstrap.Carousel(carouselRef.value, {
+        interval: 5000,
+        touch: true,
+        wrap: true,
+      });
+    }
+  });
+});
+
+const prevSlide = () => {
+  if (carouselInstance) {
+    carouselInstance.prev();
+  }
+};
+
+const nextSlide = () => {
+  if (carouselInstance) {
+    carouselInstance.next();
+  }
+};
 </script>
 
 <template>
   <section class="hero-carousel">
-    <div
-      id="heroCarousel"
-      class="carousel slide"
-      data-bs-ride="carousel"
-      data-bs-touch="true"
-    >
+    <div ref="carouselRef" id="heroCarousel" class="carousel slide">
       <!-- Indicators -->
       <div class="carousel-indicators">
         <button
@@ -105,23 +129,13 @@ const slides = [
       </div>
 
       <!-- Controls - Hidden by default, show on hover -->
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#heroCarousel"
-        data-bs-slide="prev"
-      >
+      <button class="carousel-control-prev" type="button" @click="prevSlide">
         <span class="control-icon">
           <i class="bi bi-chevron-left"></i>
         </span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#heroCarousel"
-        data-bs-slide="next"
-      >
+      <button class="carousel-control-next" type="button" @click="nextSlide">
         <span class="control-icon">
           <i class="bi bi-chevron-right"></i>
         </span>
@@ -266,14 +280,17 @@ const slides = [
 /* Carousel Controls - Hidden by default, show on hover */
 .carousel-control-prev,
 .carousel-control-next {
-  width: 50px;
-  height: 50px;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  width: auto;
   background: none;
   border: none;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 20;
+  cursor: pointer;
+  padding: 0;
 }
 
 .carousel-control-prev {

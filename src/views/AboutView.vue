@@ -1,5 +1,13 @@
 <script setup>
-import { RouterView, RouterLink } from "vue-router";
+import { RouterView, RouterLink, useRoute } from "vue-router";
+import { computed } from "vue";
+
+const route = useRoute();
+
+// Check if current route is team or its children
+const isTeamActive = computed(() => {
+  return route.path.startsWith("/gioi-thieu/doi-ngu");
+});
 </script>
 
 <template>
@@ -43,7 +51,11 @@ import { RouterView, RouterLink } from "vue-router";
                   </RouterLink>
                 </li>
                 <li class="nav-item">
-                  <RouterLink class="nav-link" to="/gioi-thieu/doi-ngu">
+                  <RouterLink
+                    class="nav-link"
+                    to="/gioi-thieu/doi-ngu"
+                    :class="{ active: isTeamActive }"
+                  >
                     Đội ngũ nhân sự
                   </RouterLink>
                 </li>
@@ -99,6 +111,7 @@ import { RouterView, RouterLink } from "vue-router";
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-sm);
+  color: var(--color-white);
 }
 
 .page-subtitle {

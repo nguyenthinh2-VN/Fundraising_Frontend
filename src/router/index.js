@@ -22,7 +22,24 @@ const routes = [
       {
         path: 'doi-ngu',
         name: 'team',
-        component: () => import('@/views/about/TeamView.vue')
+        component: () => import('@/views/about/TeamView.vue'),
+        children: [
+          {
+            path: '',
+            name: 'team-overview',
+            component: () => import('@/views/about/team/ManagementBoardView.vue')
+          },
+          {
+            path: 'ban-kiem-soat',
+            name: 'supervisory-board',
+            component: () => import('@/views/about/team/SupervisoryBoardView.vue')
+          },
+          {
+            path: 'ban-co-van',
+            name: 'advisory-board',
+            component: () => import('@/views/about/team/AdvisoryBoardView.vue')
+          }
+        ]
       }
     ]
   },
@@ -91,10 +108,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
+    // Keep position when navigating within same parent (e.g., team tabs)
+    if (from.path.startsWith('/gioi-thieu/doi-ngu') && to.path.startsWith('/gioi-thieu/doi-ngu')) {
+      return false;
+    }
     if (savedPosition) {
-      return savedPosition
+      return savedPosition;
     } else {
-      return { top: 0 }
+      return { top: 0 };
     }
   }
 })
