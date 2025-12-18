@@ -1,0 +1,138 @@
+<script setup>
+import { RouterLink } from "vue-router";
+</script>
+
+<template>
+  <section class="about-preview section-padding">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <!-- Image Column -->
+        <div class="col-lg-6">
+          <div class="about-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80"
+              alt="Hoạt động Quỹ Bông Hồng Nhỏ"
+              class="about-image"
+            />
+            <div class="image-accent"></div>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="col-lg-6">
+          <div class="about-content">
+            <span class="section-label">Về chúng tôi</span>
+            <h2 class="about-title">Quỹ Bông Hồng Nhỏ</h2>
+            <p class="about-description">
+              Quỹ Bông Hồng Nhỏ được thành lập với sứ mệnh mang đến cơ hội phát
+              triển toàn diện cho trẻ em có hoàn cảnh khó khăn tại Việt Nam.
+              Chúng tôi tin rằng mỗi đứa trẻ đều xứng đáng được yêu thương, chăm
+              sóc và có cơ hội học tập.
+            </p>
+            <ul class="about-features">
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>100% minh bạch trong mọi khoản đóng góp</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Báo cáo tài chính định kỳ công khai</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Đội ngũ tình nguyện viên tận tâm</span>
+              </li>
+            </ul>
+            <RouterLink to="/gioi-thieu" class="btn btn-primary-custom">
+              Tìm hiểu thêm
+            </RouterLink>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.about-preview {
+  background-color: var(--color-background);
+}
+
+.about-image-wrapper {
+  position: relative;
+}
+
+.about-image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.image-accent {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 80%;
+  height: 80%;
+  background-color: var(--color-primary);
+  opacity: 0.1;
+  border-radius: var(--radius-lg);
+  z-index: 1;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--spacing-xl);
+}
+
+.about-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.about-features i {
+  color: var(--color-secondary);
+  font-size: var(--font-size-lg);
+}
+
+@media (max-width: 991.98px) {
+  .image-accent {
+    display: none;
+  }
+
+  .about-title {
+    font-size: var(--font-size-3xl);
+  }
+}
+</style>
