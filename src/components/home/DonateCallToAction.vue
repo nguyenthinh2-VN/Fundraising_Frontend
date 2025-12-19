@@ -3,28 +3,28 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
-  <section class="donate-cta section-padding">
+  <section class="cta-section">
     <div class="container">
-      <div class="cta-wrapper text-center">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <h2 class="cta-title">
-              Hãy cùng chúng tôi<br />
-              <span class="text-highlight">thắp sáng nụ cười</span>
-            </h2>
-            <p class="cta-description">
-              Mỗi đóng góp của bạn, dù lớn hay nhỏ, đều mang lại hy vọng và
-              tương lai tươi sáng cho các em nhỏ có hoàn cảnh khó khăn.
-            </p>
-            <div class="cta-buttons">
-              <RouterLink to="/quyen-gop" class="btn btn-donate-cta">
-                <i class="bi bi-heart-fill me-2"></i>
-                Quyên góp ngay
-              </RouterLink>
-              <RouterLink to="/lien-he" class="btn btn-contact-cta">
-                Liên hệ với chúng tôi
-              </RouterLink>
-            </div>
+      <div class="cta-card">
+        <!-- Decorative circles -->
+        <div class="circle circle-left"></div>
+        <div class="circle circle-right"></div>
+
+        <!-- Content -->
+        <div class="cta-content">
+          <h2 class="cta-title">Chung tay vì cộng đồng</h2>
+          <p class="cta-description">
+            Sự đóng góp của bạn, dù nhỏ bé, cũng có thể thay đổi cuộc đời của
+            một đứa trẻ. Hãy cùng chúng tôi viết tiếp những câu chuyện cổ tích
+            đời thường.
+          </p>
+          <div class="cta-buttons">
+            <RouterLink to="/quyen-gop" class="btn-cta btn-primary-cta">
+              Quyên góp ngay
+            </RouterLink>
+            <RouterLink to="/lien-he" class="btn-cta btn-outline-cta">
+              Đăng ký tình nguyện
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -33,108 +33,126 @@ import { RouterLink } from "vue-router";
 </template>
 
 <style scoped>
-.donate-cta {
-  background-color: var(--color-background);
-  position: relative;
+.cta-section {
+  padding: 9rem 1rem 4rem;
 }
 
-.cta-wrapper {
-  padding: var(--spacing-2xl);
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: var(--radius-xl);
+.cta-card {
   position: relative;
   overflow: hidden;
+  background: #d8232a;
+  border-radius: var(--radius-xl);
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(177, 32, 41, 0.25);
 }
 
-.cta-wrapper::before {
-  content: "";
+/* Decorative circles */
+.circle {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(177, 32, 41, 0.05) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.circle-left {
+  width: 300px;
+  height: 300px;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.circle-right {
+  width: 400px;
+  height: 400px;
+  bottom: 0;
+  right: 0;
+  transform: translate(30%, 30%);
+}
+
+/* Content */
+.cta-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
 }
 
 .cta-title {
-  font-size: var(--font-size-4xl);
+  font-size: 2.5rem;
   font-weight: var(--font-weight-bold);
-  color: var(--color-text);
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.3;
-}
-
-.text-highlight {
-  color: var(--color-primary);
+  color: var(--color-white);
+  margin: 0;
+  line-height: 1.2;
 }
 
 .cta-description {
   font-size: var(--font-size-lg);
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
-  margin: 0 auto var(--spacing-xl);
+  margin: 0;
   line-height: 1.7;
 }
 
 .cta-buttons {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
 }
 
-.btn-donate-cta {
-  background-color: var(--color-primary);
-  color: var(--color-white) !important;
-  font-weight: var(--font-weight-semibold);
-  padding: 1rem 2rem;
-  border-radius: var(--radius-full);
-  border: none;
-  font-size: var(--font-size-lg);
-  transition: all var(--transition-base);
-  text-decoration: none;
-  display: inline-flex;
+.btn-cta {
+  display: flex;
   align-items: center;
-}
-
-.btn-donate-cta:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(177, 32, 41, 0.3);
-}
-
-.btn-contact-cta {
-  background-color: transparent;
-  color: var(--color-text) !important;
-  font-weight: var(--font-weight-semibold);
-  padding: 1rem 2rem;
-  border-radius: var(--radius-full);
-  border: 2px solid var(--color-text);
-  font-size: var(--font-size-lg);
-  transition: all var(--transition-base);
+  justify-content: center;
+  height: 48px;
+  padding: 0 1.2rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   text-decoration: none;
+  transition: all var(--transition-base);
 }
 
-.btn-contact-cta:hover {
-  background-color: var(--color-text);
-  color: var(--color-white) !important;
-  transform: translateY(-3px);
+.btn-primary-cta {
+  background: var(--color-white);
+  color: var(--color-primary);
 }
 
+.btn-primary-cta:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.btn-outline-cta {
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+}
+
+.btn-outline-cta:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
 @media (max-width: 767.98px) {
-  .cta-title {
-    font-size: var(--font-size-3xl);
+  .cta-card {
+    padding: 3rem 1.5rem;
   }
 
-  .btn-donate-cta,
-  .btn-contact-cta {
+  .cta-title {
+    font-size: 1.75rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
     width: 100%;
-    justify-content: center;
+  }
+
+  .btn-cta {
+    width: 100%;
   }
 }
 </style>

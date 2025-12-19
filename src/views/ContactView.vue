@@ -99,7 +99,10 @@ import { RouterLink } from "vue-router";
                 </div>
                 <div class="info-content">
                   <h6>Địa chỉ</h6>
-                  <p>TP. Hồ Chí Minh, Việt Nam</p>
+                  <p>
+                    49 Pham Ngoc Thach St., Vo Thi Sau Ward, District 3, HCMC,
+                    Vietnam
+                  </p>
                 </div>
               </div>
 
@@ -110,8 +113,8 @@ import { RouterLink } from "vue-router";
                 <div class="info-content">
                   <h6>Email</h6>
                   <p>
-                    <a href="mailto:info@bonghongnho.org"
-                      >info@bonghongnho.org</a
+                    <a href="mailto:info@littlerosesfoundation.org"
+                      >info@littlerosesfoundation.org</a
                     >
                   </p>
                 </div>
@@ -123,17 +126,8 @@ import { RouterLink } from "vue-router";
                 </div>
                 <div class="info-content">
                   <h6>Điện thoại</h6>
-                  <p><a href="tel:+84123456789">+84 123 456 789</a></p>
-                </div>
-              </div>
-
-              <div class="info-item">
-                <div class="info-icon">
-                  <i class="bi bi-clock"></i>
-                </div>
-                <div class="info-content">
-                  <h6>Giờ làm việc</h6>
-                  <p>Thứ 2 - Thứ 6: 8:00 - 17:00</p>
+                  <p><a href="tel:+84906220422">(+84) 906.22.04.22</a></p>
+                  <p><a href="tel:+84896622422">(+84) 896.62.24.22</a></p>
                 </div>
               </div>
 
@@ -141,14 +135,19 @@ import { RouterLink } from "vue-router";
               <div class="social-section mt-4">
                 <h6>Kết nối với chúng tôi</h6>
                 <div class="social-links d-flex gap-3 mt-3">
-                  <a href="#" class="social-link" aria-label="Facebook">
+                  <a
+                    href="https://www.facebook.com/littlerosesfoundation/"
+                    class="social-link"
+                    aria-label="Facebook"
+                  >
                     <i class="bi bi-facebook"></i>
                   </a>
-                  <a href="#" class="social-link" aria-label="YouTube">
+                  <a
+                    href="https://www.youtube.com/@littlerosesfoundation"
+                    class="social-link"
+                    aria-label="YouTube"
+                  >
                     <i class="bi bi-youtube"></i>
-                  </a>
-                  <a href="#" class="social-link" aria-label="Instagram">
-                    <i class="bi bi-instagram"></i>
                   </a>
                 </div>
               </div>

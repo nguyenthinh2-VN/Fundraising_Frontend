@@ -1,13 +1,20 @@
 <script setup>
 import { ref, computed } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import donateQrImage from "@/assets/img/donatelrf.png";
 import ProcessSteps from "@/components/donate/ProcessSteps.vue";
 import Testimonials from "@/components/donate/Testimonials.vue";
 import FAQ from "@/components/donate/FAQ.vue";
 
+// Router
+const router = useRouter();
+const goBack = () => router.back();
+
 // Active tab
 const activeTab = ref("info");
+
+// Total donation
+const totalRaised = "3.809.128.440";
 
 // Bank info
 const bankInfo = {
@@ -98,6 +105,7 @@ const paginatedDonors = computed(() => {
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 
@@ -111,7 +119,10 @@ const formatAmount = (amount) => {
     <!-- Page Header -->
     <section class="page-header">
       <div class="container">
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+          <button class="back-btn" @click="goBack" title="Quay lại">
+            <i class="bi bi-arrow-left"></i>
+          </button>
           <ol class="breadcrumb mb-2">
             <li class="breadcrumb-item">
               <RouterLink to="/">Trang chủ</RouterLink>
@@ -206,6 +217,21 @@ const formatAmount = (amount) => {
             </div>
           </div>
         </div>
+
+        <!-- Total Stats -->
+        <div class="total-stats-section">
+          <h2 class="total-title">TỔNG SỐ TIỀN</h2>
+          <div class="total-divider"></div>
+          <p class="total-quote">
+            "Mọi đóng góp của bạn đều được chúng tôi trân trọng, sử dụng đúng
+            mục đích và công khai minh bạch."
+          </p>
+          <p class="total-update">Cập nhật đến ngày: 19/12/2025</p>
+          <div class="total-amount-box">
+            <span class="total-number">{{ totalRaised }}</span>
+            <span class="total-currency">đ</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -239,6 +265,10 @@ const formatAmount = (amount) => {
             đây bằng gương mặt tươi cười, ở kia bằng một lời khả ái, luôn luôn
             làm việc đúng đắn dù nhỏ bé nhất và làm vì tình yêu."
           </p>
+          <div class="total-stats-inline">
+            <span class="total-label">Tổng quyên góp:</span>
+            <span class="total-amount-inline">{{ totalRaised }} VNĐ</span>
+          </div>
         </div>
 
         <!-- Donors Table -->
@@ -313,8 +343,32 @@ const formatAmount = (amount) => {
     var(--color-primary) 0%,
     var(--color-primary-dark) 100%
   );
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
   color: var(--color-white);
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .breadcrumb-item a {
@@ -324,6 +378,10 @@ const formatAmount = (amount) => {
 
 .breadcrumb-item.active {
   color: rgba(255, 255, 255, 0.6);
+}
+
+.breadcrumb-nav .breadcrumb {
+  margin-bottom: 0;
 }
 
 .page-title {
@@ -485,7 +543,83 @@ const formatAmount = (amount) => {
   color: var(--color-text-light);
   font-style: italic;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 10px auto;
+}
+
+/* Total Stats Section */
+.total-stats-section {
+  text-align: center;
+  padding: var(--spacing-3xl) 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin: var(--spacing-xl) 0;
+}
+
+.total-title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.total-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 0 auto var(--spacing-lg);
+}
+
+.total-quote {
+  font-style: italic;
+  color: var(--color-text-light);
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.8;
+}
+
+.total-update {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.total-amount-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.total-number {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.total-currency {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-left: 4px;
+  position: relative;
+  top: 5px;
+}
+
+/* Tab Donors - inline stats */
+.total-stats-inline {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.total-amount-inline {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
 }
 
 .donors-table-wrapper {
