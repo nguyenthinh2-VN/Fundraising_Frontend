@@ -13,9 +13,16 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { name: "Facebook", icon: "facebook", url: "#" },
-  { name: "YouTube", icon: "youtube", url: "#" },
-  { name: "Instagram", icon: "instagram", url: "#" },
+  {
+    name: "Facebook",
+    icon: "facebook",
+    url: "https://www.facebook.com/littlerosesfoundation",
+  },
+  {
+    name: "YouTube",
+    icon: "youtube",
+    url: "https://www.facebook.com/littlerosesfoundation",
+  },
 ];
 
 // Google Maps embed URL for the address
@@ -27,61 +34,6 @@ const mapEmbedUrl =
   <footer class="app-footer bg-dark text-white pt-5 pb-3">
     <div class="container">
       <div class="row g-4">
-        <!-- About Column -->
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-brand mb-3">
-            <div class="d-flex align-items-center mb-3">
-              <div class="logo-icon me-2">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="20" cy="20" r="18" fill="#B12029" />
-                  <path
-                    d="M20 10C16.5 10 13 13.5 13 17C13 22 20 30 20 30C20 30 27 22 27 17C27 13.5 23.5 10 20 10Z"
-                    fill="white"
-                  />
-                </svg>
-              </div>
-              <span class="brand-name h5 mb-0">Little Roses Foundation</span>
-            </div>
-            <p class="text-white-50 small">
-              Thắp sáng nụ cười, ươm mầm tương lai. Chúng tôi cam kết 100% minh
-              bạch trong từng khoản đóng góp.
-            </p>
-          </div>
-
-          <!-- Social Links -->
-          <div class="social-links d-flex gap-3">
-            <a
-              v-for="social in socialLinks"
-              :key="social.name"
-              :href="social.url"
-              class="social-link"
-              :aria-label="social.name"
-              target="_blank"
-              rel="noopener"
-            >
-              <i :class="`bi bi-${social.icon}`"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="col-lg-2 col-md-6">
-          <h6 class="footer-title mb-3">Liên kết nhanh</h6>
-          <ul class="list-unstyled footer-links">
-            <li v-for="link in quickLinks" :key="link.path" class="mb-2">
-              <RouterLink :to="link.path" class="footer-link">
-                {{ link.name }}
-              </RouterLink>
-            </li>
-          </ul>
-        </div>
-
         <!-- Contact Info -->
         <div class="col-lg-3 col-md-6">
           <h6 class="footer-title mb-3">Liên hệ</h6>
@@ -112,6 +64,43 @@ const mapEmbedUrl =
               >
                 info@littlerosesfoundation.org
               </a>
+            </li>
+          </ul>
+        </div>
+        <!-- About Column -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand mb-3">
+            <div class="d-flex align-items-center mb-3"></div>
+            <p class="text-white-50 small">
+              Thắp sáng nụ cười, ươm mầm tương lai. Chúng tôi cam kết 100% minh
+              bạch trong từng khoản đóng góp.
+            </p>
+          </div>
+
+          <!-- Social Links -->
+          <div class="social-links d-flex gap-3">
+            <a
+              v-for="social in socialLinks"
+              :key="social.name"
+              :href="social.url"
+              class="social-link"
+              :aria-label="social.name"
+              target="_blank"
+              rel="noopener"
+            >
+              <i :class="`bi bi-${social.icon}`"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-title mb-3">Liên kết nhanh</h6>
+          <ul class="list-unstyled footer-links">
+            <li v-for="link in quickLinks" :key="link.path" class="mb-2">
+              <RouterLink :to="link.path" class="footer-link">
+                {{ link.name }}
+              </RouterLink>
             </li>
           </ul>
         </div>
@@ -155,7 +144,7 @@ const mapEmbedUrl =
 
 <style scoped>
 .app-footer {
-  background-color: #1a1a1a !important;
+  background-color: #1f2a37 !important;
 }
 
 .footer-title {

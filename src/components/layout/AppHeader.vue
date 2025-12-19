@@ -118,8 +118,8 @@ const toggleMenu = () => {
   background-color: var(--color-primary);
   color: var(--color-white) !important;
   font-weight: var(--font-weight-semibold);
-  padding: 0.625rem 1.5rem;
-  border-radius: var(--radius-full);
+  padding: 0.625rem 1.3rem;
+  border-radius: 10px;
   border: none;
   transition: all var(--transition-base);
   text-decoration: none;

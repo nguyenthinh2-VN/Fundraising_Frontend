@@ -97,7 +97,7 @@ const currentYear = 2025;
                 <h2 class="amount-value">
                   <span class="amount-main">5.560</span
                   ><span class="amount-highlight">.875.448</span>
-                  <span class="amount-currency">đ</span>
+                  <span class="amount-currency">VND</span>
                 </h2>
                 <p class="amount-label">TỔNG CỘNG</p>
               </div>
@@ -233,7 +233,7 @@ const currentYear = 2025;
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  color: #c62828;
   letter-spacing: -1px;
 }
 
@@ -241,7 +241,7 @@ const currentYear = 2025;
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  color: #c62828;
   letter-spacing: -1px;
 }
 
@@ -543,7 +543,7 @@ const currentYear = 2025;
   }
 
   .amount-section {
-    padding: 50px;
+    padding: 45px;
   }
   .amount-main,
   .amount-highlight {

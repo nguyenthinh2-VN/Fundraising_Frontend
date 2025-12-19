@@ -1,16 +1,18 @@
 <script setup>
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
+import donateQrImage from "@/assets/img/donatelrf.png";
 
 // Placeholder data - will be replaced with real data
 const bankInfo = {
-  bankName: "Ngân hàng TMCP Ngoại thương Việt Nam (Vietcombank)",
-  accountNumber: "0123456789",
-  accountName: "QUỸ BÔNG HỒNG NHỎ",
-  branch: "Chi nhánh TP. Hồ Chí Minh",
+  bankName: "Ngân hàng Sacombank",
+  accountNumber: "060289990456",
+  accountName: "Quỹ Từ Thiện Bông Hồng Nhỏ",
+  branch: "Tân Định",
 };
 
 const donationStats = {
-  totalRaised: "5.560.875.448",
+  totalRaised: "3.809.128.440",
   totalDonors: 1250,
   recentDonations: [
     { name: "Ẩn danh", amount: "500,000", time: "2 giờ trước" },
@@ -19,6 +21,16 @@ const donationStats = {
     { name: "Ẩn danh", amount: "2,000,000", time: "2 ngày trước" },
     { name: "Lê Văn C", amount: "500,000", time: "3 ngày trước" },
   ],
+};
+
+const copied = ref(false);
+
+const copyAccountNumber = () => {
+  navigator.clipboard.writeText(bankInfo.accountNumber);
+  copied.value = true;
+  setTimeout(() => {
+    copied.value = false;
+  }, 2000);
 };
 </script>
 
@@ -56,11 +68,12 @@ const donationStats = {
               </h3>
               <div class="row align-items-center">
                 <div class="col-md-5 text-center">
-                  <div class="qr-placeholder">
-                    <div class="qr-box">
-                      <i class="bi bi-qr-code-scan"></i>
-                      <p class="mt-2 mb-0 small">Mã QR sẽ được cập nhật</p>
-                    </div>
+                  <div class="qr-container">
+                    <img
+                      :src="donateQrImage"
+                      alt="QR Code Donate"
+                      class="qr-image"
+                    />
                   </div>
                 </div>
                 <div class="col-md-7">
@@ -71,9 +84,20 @@ const donationStats = {
                     </div>
                     <div class="info-row">
                       <span class="label">Số tài khoản:</span>
-                      <span class="value account-number">{{
-                        bankInfo.accountNumber
-                      }}</span>
+                      <span class="value account-number-row">
+                        <span class="account-number">{{
+                          bankInfo.accountNumber
+                        }}</span>
+                        <button
+                          class="copy-btn"
+                          @click="copyAccountNumber"
+                          :title="copied ? 'Đã copy!' : 'Copy số tài khoản'"
+                        >
+                          <i
+                            :class="copied ? 'bi bi-check-lg' : 'bi bi-copy'"
+                          ></i>
+                        </button>
+                      </span>
                     </div>
                     <div class="info-row">
                       <span class="label">Chủ tài khoản:</span>
@@ -87,8 +111,8 @@ const donationStats = {
                   <div class="transfer-note mt-3">
                     <p class="mb-0">
                       <i class="bi bi-info-circle me-2"></i>
-                      <strong>Nội dung chuyển khoản:</strong> [Họ tên] - Ung ho
-                      Quy
+                      <strong>Nội dung chuyển khoản:</strong> Tên cá nhân đóng
+                      góp
                     </p>
                   </div>
                 </div>
@@ -134,10 +158,6 @@ const donationStats = {
                     {{ donationStats.totalRaised }} VNĐ
                   </div>
                   <div class="stat-label">Tổng số tiền đã quyên góp</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-value">{{ donationStats.totalDonors }}</div>
-                  <div class="stat-label">Lượt quyên góp</div>
                 </div>
               </div>
             </div>
@@ -228,26 +248,14 @@ const donationStats = {
   color: var(--color-primary);
 }
 
-.qr-placeholder {
-  padding: var(--spacing-lg);
+.qr-container {
+  padding: var(--spacing-md);
 }
 
-.qr-box {
-  width: 180px;
-  height: 180px;
-  background: var(--color-background-alt);
-  border: 2px dashed #ddd;
+.qr-image {
+  max-width: 100%;
+  height: auto;
   border-radius: var(--radius-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.qr-box i {
-  font-size: 4rem;
-  color: #ccc;
 }
 
 .bank-info {
@@ -259,6 +267,7 @@ const donationStats = {
 .info-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: var(--spacing-sm) 0;
   border-bottom: 1px solid #eee;
 }
@@ -279,11 +288,40 @@ const donationStats = {
   font-size: var(--font-size-sm);
 }
 
+.account-number-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
 .account-number {
   font-family: monospace;
   font-size: var(--font-size-base) !important;
   color: var(--color-primary) !important;
   font-weight: var(--font-weight-bold) !important;
+}
+
+.copy-btn {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.copy-btn:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.copy-btn i {
+  font-size: 0.875rem;
 }
 
 .transfer-note {
@@ -313,7 +351,7 @@ const donationStats = {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto;
   gap: var(--spacing-md);
 }
 

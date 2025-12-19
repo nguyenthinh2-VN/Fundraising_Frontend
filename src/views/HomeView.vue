@@ -5,6 +5,7 @@ import ProgramsHighlight from "@/components/home/ProgramsHighlight.vue";
 import AboutPreview from "@/components/home/AboutPreview.vue";
 import ImpactStats from "@/components/home/ImpactStats.vue";
 import DonateCallToAction from "@/components/home/DonateCallToAction.vue";
+import ActivitiesSlider from "@/components/home/ActivitiesSlider.vue";
 </script>
 
 <template>
@@ -12,14 +13,17 @@ import DonateCallToAction from "@/components/home/DonateCallToAction.vue";
     <!-- Hero Carousel -->
     <HeroCarousel />
 
+    <!-- About Preview Section -->
+    <AboutPreview />
+
     <!-- Donation Stats (Tổng tiền + Auto-scroll donors) -->
     <DonationStats />
 
     <!-- Programs Highlight (3 chương trình chính) -->
     <ProgramsHighlight />
 
-    <!-- About Preview Section -->
-    <AboutPreview />
+    <!-- Activities Slider -->
+    <ActivitiesSlider />
 
     <!-- Impact Statistics -->
     <ImpactStats />
@@ -34,3 +38,4 @@ import DonateCallToAction from "@/components/home/DonateCallToAction.vue";
   overflow-x: hidden;
 }
 </style>
+

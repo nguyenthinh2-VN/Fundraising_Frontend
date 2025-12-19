@@ -56,6 +56,7 @@ import { RouterLink } from "vue-router";
 <style scoped>
 .about-preview {
   background-color: var(--color-background);
+  margin: 20px 0;
 }
 
 .about-image-wrapper {
@@ -84,11 +85,11 @@ import { RouterLink } from "vue-router";
 
 .section-label {
   display: inline-block;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
+  font-size: 40px;
+  font-weight: var(--font-weight-bold);
   color: var(--color-primary);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin-bottom: var(--spacing-sm);
 }
 
