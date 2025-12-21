@@ -41,9 +41,14 @@ const programs = [
 <template>
   <section class="programs-highlight section-padding">
     <div class="container">
-      <div class="section-header text-center mb-5">
-        <span class="section-label">Chương trình nổi bật</span>
-        <h2 class="section-title">Hoạt động của chúng tôi</h2>
+      <div class="section-header mb-5">
+        <div class="header-content text-center">
+          <span class="section-label">Chương trình nổi bật</span>
+          <h2 class="section-title">Hoạt động của chúng tôi</h2>
+        </div>
+        <RouterLink to="/hoat-dong" class="view-more-link">
+          Xem thêm <i class="bi bi-arrow-right"></i>
+        </RouterLink>
       </div>
 
       <div class="programs-list">
@@ -89,6 +94,18 @@ const programs = [
   background-color: var(--color-background-alt);
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.header-content {
+  flex: 1;
+}
+
 .section-label {
   display: inline-block;
   font-size: var(--font-size-sm);
@@ -103,6 +120,22 @@ const programs = [
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
+}
+
+.view-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  padding-bottom: var(--spacing-sm);
+}
+
+.view-more-link:hover {
+  color: var(--color-primary-dark);
+  transform: translateX(5px);
 }
 
 .programs-list {

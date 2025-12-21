@@ -45,30 +45,8 @@ const routes = [
   },
   {
     path: '/hoat-dong',
-    name: 'programs',
-    component: () => import('@/views/ProgramsView.vue'),
-    children: [
-      {
-        path: 'giao-duc',
-        name: 'education',
-        component: () => import('@/views/programs/EducationView.vue')
-      },
-      {
-        path: 'y-te',
-        name: 'health',
-        component: () => import('@/views/programs/HealthView.vue')
-      },
-      {
-        path: 'bac-ai',
-        name: 'social',
-        component: () => import('@/views/programs/SocialView.vue')
-      },
-      {
-        path: 'gay-quy',
-        name: 'fundraising',
-        component: () => import('@/views/programs/FundraisingView.vue')
-      }
-    ]
+    name: 'activities',
+    component: () => import('@/views/ActivitiesView.vue')
   },
   {
     path: '/bao-cao-tai-chinh',
