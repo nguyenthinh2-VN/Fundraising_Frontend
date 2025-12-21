@@ -279,17 +279,19 @@ const scrollToSection = (sectionId) => {
 .activities-page {
   min-height: 100vh;
   background: var(--color-background);
+  font-family: var(--font-primary);
 }
 
 /* Hero Section - Simplified */
 .hero-section {
   background: linear-gradient(
     135deg,
-    var(--color-secondary) 0%,
-    var(--color-secondary-dark) 100%
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
   );
   color: var(--color-white);
   padding: var(--spacing-xl) 0;
+  font-family: var(--font-primary);
 }
 
 .breadcrumb {
@@ -325,6 +327,7 @@ const scrollToSection = (sectionId) => {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-sm);
+  color: var(--color-white);
 }
 
 .hero-subtitle {
@@ -585,13 +588,13 @@ const scrollToSection = (sectionId) => {
 }
 
 .filter-tab:hover {
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .filter-tab.active {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: var(--color-white);
 }
 
@@ -677,7 +680,7 @@ const scrollToSection = (sectionId) => {
 .completed-badge {
   padding: var(--spacing-xs) var(--spacing-sm);
   background: rgba(42, 112, 80, 0.1);
-  color: var(--color-secondary);
+  color: #198754;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   border-radius: var(--radius-full);
@@ -745,8 +748,8 @@ const scrollToSection = (sectionId) => {
 }
 
 .btn-view-photos:hover {
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* Empty State */
