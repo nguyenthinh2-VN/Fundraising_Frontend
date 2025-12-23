@@ -199,6 +199,8 @@ const maxChartValue = computed(() =>
           <div class="section-header">
             <h3 class="section-title">Biểu đồ tăng trưởng & Phân bổ</h3>
             <select v-model="selectedYear" class="year-select">
+              <option value="2025">Năm 2025</option>
+              <option value="2024">Năm 2024</option>
               <option value="2023">Năm 2023</option>
               <option value="2022">Năm 2022</option>
               <option value="2021">Năm 2021</option>

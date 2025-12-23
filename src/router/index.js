@@ -51,24 +51,7 @@ const routes = [
   {
     path: '/bao-cao-tai-chinh',
     name: 'reports',
-    component: () => import('@/views/ReportsView.vue'),
-    children: [
-      {
-        path: 'bao-cao',
-        name: 'financial-reports',
-        component: () => import('@/views/reports/FinancialReportsView.vue')
-      },
-      {
-        path: 'cau-chuyen',
-        name: 'stories',
-        component: () => import('@/views/reports/StoriesView.vue')
-      },
-      {
-        path: 'tai-lieu',
-        name: 'documents',
-        component: () => import('@/views/reports/DocumentsView.vue')
-      }
-    ]
+    component: () => import('@/views/reports/ReportsView.vue')
   },
   {
     path: '/lien-he',
@@ -78,7 +61,7 @@ const routes = [
   {
     path: '/quyen-gop',
     name: 'donate',
-    component: () => import('@/views/DonateView.vue')
+    component: () => import('@/views/reports/DonateView.vue')
   },
   {
     path: '/tin-tuc',
@@ -88,7 +71,7 @@ const routes = [
   {
     path: '/thong-ke-quyen-gop',
     name: 'donation-stats',
-    component: () => import('@/views/DonationStatsView.vue')
+    component: () => import('@/views/reports/DonationStatsView.vue')
   }
 ]
 

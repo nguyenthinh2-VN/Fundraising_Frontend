@@ -113,7 +113,7 @@ onUnmounted(() => {
                 :class="{ active: isTransparencyActive }"
                 @click.stop="toggleDropdown"
               >
-                Minh bạch tài chính
+                Báo Cáo
                 <i
                   class="bi bi-chevron-down dropdown-arrow"
                   :class="{ rotated: isDropdownOpen }"
@@ -174,7 +174,7 @@ onUnmounted(() => {
 .app-header {
   position: sticky;
   top: 0;
-  z-index: 1030;
+  z-index: 11000;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
@@ -299,7 +299,7 @@ onUnmounted(() => {
 /* Mobile styles */
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    padding: 1rem 0;
+    padding: 1rem 0.85rem;
   }
 
   .nav-link {
