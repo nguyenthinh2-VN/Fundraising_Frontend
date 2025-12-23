@@ -5,10 +5,10 @@ import donateQrImage from "@/assets/img/donatelrf.png";
 import ProcessSteps from "@/components/donate/ProcessSteps.vue";
 import Testimonials from "@/components/donate/Testimonials.vue";
 import FAQ from "@/components/donate/FAQ.vue";
+import BackButton from "@/components/common/BackButton.vue";
 
 // Router
 const router = useRouter();
-const goBack = () => router.back();
 
 // Active tab
 const activeTab = ref("info");
@@ -120,9 +120,7 @@ const formatAmount = (amount) => {
     <section class="page-header">
       <div class="container">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
-          <button class="back-btn" @click="goBack" title="Quay lại">
-            <i class="bi bi-arrow-left"></i>
-          </button>
+          <BackButton variant="light" />
           <ol class="breadcrumb mb-2">
             <li class="breadcrumb-item">
               <RouterLink to="/">Trang chủ</RouterLink>
@@ -351,24 +349,6 @@ const formatAmount = (amount) => {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-}
-
-.back-btn {
-  background: transparent;
-  border: none;
-  color: var(--color-white);
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.back-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .breadcrumb-item a {

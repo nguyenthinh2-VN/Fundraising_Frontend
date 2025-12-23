@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { RouterLink } from "vue-router";
+import BackButton from "@/components/common/BackButton.vue";
 import ProjectCard from "@/components/activities/ProjectCard.vue";
 import projectsData from "@/data/projects.json";
 
@@ -71,8 +72,9 @@ const scrollToSection = (sectionId) => {
     <!-- Hero Section (simplified) -->
     <section class="hero-section">
       <div class="container">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <BackButton variant="light" />
+          <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item">
               <RouterLink to="/">Trang chủ</RouterLink>
             </li>
@@ -92,7 +94,7 @@ const scrollToSection = (sectionId) => {
       <div class="container">
         <div class="banner-card">
           <img
-            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1470&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1764738130341-36d166654805?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Trẻ em vui cười"
             class="banner-image"
           />
@@ -294,12 +296,19 @@ const scrollToSection = (sectionId) => {
   font-family: var(--font-primary);
 }
 
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
 .breadcrumb {
   display: flex;
   gap: var(--spacing-sm);
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--spacing-md) 0;
+  margin: 0;
   font-size: var(--font-size-sm);
 }
 

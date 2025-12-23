@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView, RouterLink, useRoute } from "vue-router";
 import { computed } from "vue";
+import BackButton from "@/components/common/BackButton.vue";
 
 const route = useRoute();
 
@@ -15,8 +16,9 @@ const isTeamActive = computed(() => {
     <!-- Page Header -->
     <section class="page-header">
       <div class="container">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-2">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <BackButton variant="light" />
+          <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item">
               <RouterLink to="/">Trang chủ</RouterLink>
             </li>
@@ -80,8 +82,15 @@ const isTeamActive = computed(() => {
     var(--color-primary) 0%,
     var(--color-primary-dark) 100%
   );
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
   color: var(--color-white);
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .breadcrumb {
