@@ -85,7 +85,7 @@ import { RouterLink } from "vue-router";
 
 .section-label {
   display: inline-block;
-  font-size: 40px;
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
   text-transform: uppercase;
