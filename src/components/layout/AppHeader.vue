@@ -28,6 +28,7 @@ const transparencyItems = [
   {
     name: "Báo cáo thường niên",
     path: "/bao-cao-thuong-nien",
+    icon: "calendar-check",
   },
 ];
 

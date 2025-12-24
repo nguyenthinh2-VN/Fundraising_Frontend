@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { RouterLink } from "vue-router";
 import BackButton from "@/components/common/BackButton.vue";
+import FAQSection from "@/components/common/FAQSection.vue";
 
 // Active category filter
 const activeCategory = ref("all");
@@ -123,6 +124,31 @@ const subscribe = () => {
     }, 3000);
   }
 };
+
+// FAQ data cho trang tin tức
+const newsFaqs = ref([
+  {
+    question: "Làm sao để tôi liên hệ đưa tin về hoạt động của Quỹ?",
+    answer:
+      "Bạn có thể liên hệ bộ phận truyền thông qua email: media@bonghongnho.org hoặc hotline 1900.xxxx. Chúng tôi sẵn sàng hỗ trợ các cơ quan báo chí và truyền thông.",
+  },
+  {
+    question:
+      "Tôi muốn tham gia tình nguyện tại các sự kiện thì đăng ký ở đâu?",
+    answer:
+      "Bạn có thể đăng ký làm tình nguyện viên thông qua form trên website hoặc fanpage Facebook của Quỹ. Chúng tôi sẽ liên hệ xác nhận trong 2-3 ngày làm việc.",
+  },
+  {
+    question: "Các tin tức và bài viết có được kiểm duyệt không?",
+    answer:
+      "Tất cả tin tức đều được Ban biên tập kiểm duyệt kỹ lưỡng về nội dung và hình ảnh trước khi đăng tải để đảm bảo tính chính xác và minh bạch.",
+  },
+  {
+    question: "Tôi có thể đóng góp bài viết hoặc chia sẻ câu chuyện không?",
+    answer:
+      "Rất hoan nghênh! Nếu bạn có câu chuyện ý nghĩa muốn chia sẻ, hãy gửi về email: info@littlerosesfoundation.org. Những câu chuyện được chọn sẽ được đăng tải trên website.",
+  },
+]);
 </script>
 
 <template>
@@ -303,6 +329,18 @@ const subscribe = () => {
             </div>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section - Full Width -->
+    <section class="faq-section-wrapper">
+      <div class="container">
+        <FAQSection
+          title="Câu hỏi thường gặp"
+          subtitle="Những thắc mắc phổ biến về tin tức và hoạt động của Quỹ"
+          :items="newsFaqs"
+          :columns="2"
+        />
       </div>
     </section>
   </div>
@@ -982,6 +1020,19 @@ const subscribe = () => {
 
   .category-tab {
     white-space: nowrap;
+  }
+}
+
+/* FAQ Section Full Width */
+.faq-section-wrapper {
+  background: var(--color-white, #fff);
+  padding: 3rem 0;
+  border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .faq-section-wrapper {
+    padding: 2rem 0;
   }
 }
 </style>
