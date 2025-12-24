@@ -365,7 +365,7 @@ const downloadReport = () => {
                   <th>MÔ TẢ</th>
                   <th>DANH MỤC</th>
                   <th>SỐ TIỀN</th>
-                  <th class="hide-mobile">CHỨNG TỪ</th>
+                  <th>CHỨNG TỪ</th>
                 </tr>
               </thead>
               <tbody>
@@ -377,7 +377,7 @@ const downloadReport = () => {
                     <span class="cat-text desktop-only">{{ tx.category }}</span>
                   </td>
                   <td :class="tx.amountType">{{ tx.amount }}</td>
-                  <td class="hide-mobile">{{ tx.document }}</td>
+                  <td>{{ tx.document }}</td>
                 </tr>
               </tbody>
             </table>

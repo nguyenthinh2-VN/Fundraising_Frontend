@@ -10,7 +10,7 @@ const isDropdownOpen = ref(false);
 const navItems = [
   { name: "Tin tức", path: "/tin-tuc" },
   { name: "Hoạt động", path: "/hoat-dong" },
-  { name: "Về chúng tôi", path: "/gioi-thieu" },
+  { name: "Giới thiệu", path: "/gioi-thieu" },
 ];
 
 // Dropdown items for "Minh bạch tài chính"
@@ -24,6 +24,10 @@ const transparencyItems = [
     name: "Báo cáo tài chính",
     path: "/bao-cao-tai-chinh",
     icon: "file-earmark-text",
+  },
+  {
+    name: "Báo cáo thường niên",
+    path: "/bao-cao-thuong-nien",
   },
 ];
 
@@ -123,33 +127,28 @@ onUnmounted(() => {
                 class="dropdown-menu-custom"
                 :class="{ show: isDropdownOpen }"
               >
-                <li>
-                  <RouterLink
-                    class="dropdown-item"
-                    :to="transparencyItems[0].path"
-                    @click="
-                      isMenuOpen = false;
-                      closeDropdown();
-                    "
-                  >
-                    <i :class="`bi bi-${transparencyItems[0].icon} me-2`"></i>
-                    {{ transparencyItems[0].name }}
-                  </RouterLink>
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <RouterLink
-                    class="dropdown-item"
-                    :to="transparencyItems[1].path"
-                    @click="
-                      isMenuOpen = false;
-                      closeDropdown();
-                    "
-                  >
-                    <i :class="`bi bi-${transparencyItems[1].icon} me-2`"></i>
-                    {{ transparencyItems[1].name }}
-                  </RouterLink>
-                </li>
+                <template
+                  v-for="(item, index) in transparencyItems"
+                  :key="item.name"
+                >
+                  <li v-if="index > 0"><hr class="dropdown-divider" /></li>
+                  <li>
+                    <RouterLink
+                      class="dropdown-item"
+                      :to="item.path"
+                      @click="
+                        isMenuOpen = false;
+                        closeDropdown();
+                      "
+                    >
+                      <i
+                        v-if="item.icon"
+                        :class="`bi bi-${item.icon} me-2`"
+                      ></i>
+                      {{ item.name }}
+                    </RouterLink>
+                  </li>
+                </template>
               </ul>
             </li>
 

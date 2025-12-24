@@ -2,10 +2,22 @@
 // Ban cố vấn - Advisory Board
 const members = [
   {
-    name: "Đặng Thế Đức",
-    role: "TGĐ Công ty Luật Indochine Counsel - Thành viên Quỹ",
+    name: "Ngô Sĩ Đình",
+    role: "Director of Caritas Vietnam",
     image:
-      "https://littlerosesfoundation.org/wp-content/uploads/2022/08/chu-duc-hd-300x300.jpg",
+      "https://littlerosesfoundation.org/wp-content/uploads/2022/09/nsd-450x450.jpg",
+  },
+  {
+    name: "Lê Xuân Hy",
+    role: "Professor - Seattle University",
+    image:
+      "https://littlerosesfoundation.org/wp-content/uploads/2022/09/Le-Xuan-Hy-1-450x450.jpg",
+  },
+  {
+    name: "Hà Thu Thanh",
+    role: "Chairwoman - Deloitte Vietnam",
+    image:
+      "https://littlerosesfoundation.org/wp-content/uploads/2022/09/htt-450x450.jpg",
   },
 ];
 </script>
@@ -41,6 +53,15 @@ const members = [
   margin-bottom: var(--spacing-lg);
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > [class*="col-"] {
+  display: flex;
+}
+
 .member-card {
   text-align: center;
   padding: var(--spacing-lg);
@@ -48,6 +69,9 @@ const members = [
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .member-card:hover {
@@ -56,18 +80,23 @@ const members = [
 }
 
 .member-image {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  aspect-ratio: 1;
   margin: 0 auto var(--spacing-md);
-  border-radius: 50%;
   overflow: hidden;
-  border: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
 }
 
 .member-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.member-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .member-name {
@@ -81,5 +110,6 @@ const members = [
   color: var(--color-text-light);
   margin-bottom: 0;
   line-height: 1.5;
+  flex: 1;
 }
 </style>

@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from "@/components/layout/AppHeader.vue";
 import AppFooter from "@/components/layout/AppFooter.vue";
+import ScrollToTop from "@/components/common/ScrollToTop.vue";
 </script>
 
 <template>
@@ -15,6 +16,9 @@ import AppFooter from "@/components/layout/AppFooter.vue";
 
     <!-- Footer -->
     <AppFooter />
+
+    <!-- Scroll to Top Button -->
+    <ScrollToTop />
   </div>
 </template>
 

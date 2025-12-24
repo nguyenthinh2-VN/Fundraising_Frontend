@@ -105,7 +105,7 @@ const scrollToSection = (sectionId) => {
               Chúng tôi tin rằng sự minh bạch là nền tảng của lòng tin. Mọi đóng
               góp của bạn đều được ghi nhận và sử dụng đúng mục đích.
             </p>
-            <RouterLink to="/bao-cao" class="banner-btn">
+            <RouterLink to="/bao-cao-tai-chinh" class="banner-btn">
               <i class="bi bi-file-earmark-text"></i>
               Xem báo cáo tài chính
             </RouterLink>

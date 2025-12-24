@@ -72,6 +72,11 @@ const routes = [
     path: '/thong-ke-quyen-gop',
     name: 'donation-stats',
     component: () => import('@/views/reports/DonationStatsView.vue')
+  },
+  {
+    path: '/bao-cao-thuong-nien',
+    name: 'annual-report',
+    component: () => import('@/views/reports/AnnualReportView.vue')
   }
 ]
 

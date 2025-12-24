@@ -146,20 +146,6 @@ const subscribe = () => {
           Cập nhật những thông tin mới nhất về các chiến dịch, sự kiện và những
           câu chuyện ấm lòng từ cộng đồng.
         </p>
-
-        <!-- Category Tabs -->
-        <div class="category-tabs">
-          <button
-            v-for="cat in categories"
-            :key="cat.key"
-            class="category-tab"
-            :class="{ active: activeCategory === cat.key }"
-            @click="activeCategory = cat.key"
-          >
-            <i :class="`bi bi-${cat.icon}`"></i>
-            {{ cat.label }}
-          </button>
-        </div>
       </div>
     </section>
 
@@ -189,6 +175,20 @@ const subscribe = () => {
                 </RouterLink>
               </div>
             </article>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+              <button
+                v-for="cat in categories"
+                :key="cat.key"
+                class="category-tab"
+                :class="{ active: activeCategory === cat.key }"
+                @click="activeCategory = cat.key"
+              >
+                <i :class="`bi bi-${cat.icon}`"></i>
+                {{ cat.label }}
+              </button>
+            </div>
 
             <!-- Latest Articles -->
             <div class="articles-section">
@@ -426,7 +426,8 @@ const subscribe = () => {
   gap: 0.5rem;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding-bottom: 0.75rem;
+  margin-top: 1rem;
+
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary, #b12029) #e5e7eb;
 }
