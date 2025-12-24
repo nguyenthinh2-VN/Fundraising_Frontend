@@ -121,6 +121,21 @@ const nextSlide = () => {
                       Tìm hiểu thêm
                     </RouterLink>
                   </div>
+                  <!-- Trust Signals -->
+                  <div class="trust-signals">
+                    <div class="trust-item">
+                      <i class="bi bi-file-earmark-check"></i>
+                      <span>Công khai sao kê hàng tháng</span>
+                    </div>
+                    <div class="trust-item">
+                      <i class="bi bi-geo-alt-fill"></i>
+                      <span>Hoạt động tại Việt Nam từ 2021</span>
+                    </div>
+                    <div class="trust-item mobile-hide">
+                      <i class="bi bi-heart-fill"></i>
+                      <span>Đã hỗ trợ 1.000+ trẻ em</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -350,5 +365,42 @@ const nextSlide = () => {
   .carousel-control-next {
     display: none;
   }
+
+  /* Trust signals mobile - chỉ hiện 2 ý, xếp dọc */
+  .trust-signals {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .trust-item.mobile-hide {
+    display: none;
+  }
+}
+
+/* Trust Signals */
+.trust-signals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+}
+
+.trust-item i {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trust-item span {
+  font-weight: 500;
 }
 </style>
