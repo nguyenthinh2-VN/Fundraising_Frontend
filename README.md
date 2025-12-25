@@ -125,7 +125,7 @@ src/
 
 ## 👥 Tác giả
 
-- **[Tên của bạn]** - _Developer_
+- **Nguyễn Đức Thịnh** - _Developer_
 
 ---
 
