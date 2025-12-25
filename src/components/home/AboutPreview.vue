@@ -24,10 +24,11 @@ import { RouterLink } from "vue-router";
             <span class="section-label">Về chúng tôi</span>
             <h2 class="about-title">Quỹ Bông Hồng Nhỏ</h2>
             <p class="about-description">
-              Quỹ Bông Hồng Nhỏ được thành lập với sứ mệnh mang đến cơ hội phát
-              triển toàn diện cho trẻ em có hoàn cảnh khó khăn tại Việt Nam.
-              Chúng tôi tin rằng mỗi đứa trẻ đều xứng đáng được yêu thương, chăm
-              sóc và có cơ hội học tập.
+              Quỹ từ thiện Bông Hồng Nhỏ (Little Roses Foundation) là quỹ từ
+              thiện không vì mục tiêu lợi nhuận, được cấp phép bởi Bộ Nội Vụ để
+              hoạt động trên phạm vi toàn quốc. Chúng tôi hướng đến các hoạt
+              động thiện nguyện đa dạng phục vụ cộng đồng trên lĩnh vực sức khỏe
+              và giáo dục.
             </p>
             <ul class="about-features">
               <li>

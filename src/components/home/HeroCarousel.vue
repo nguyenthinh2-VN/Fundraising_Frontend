@@ -8,27 +8,27 @@ const slides = [
     title: "Thắp sáng nụ cười,",
     subtitle: "ươm mầm tương lai",
     description:
-      "Chúng tôi cam kết 100% minh bạch trong từng khoản đóng góp, mang lại sự hỗ trợ thiết thực nhất cho trẻ em có hoàn cảnh khó khăn tại Việt Nam.",
+      "Chúng tôi cam kết 100% minh bạch trong từng khoản đóng góp, mang lại sự hỗ trợ thiết thực nhất cho những mảnh đời khó khăn trên khắp Việt Nam.",
     image:
       "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80",
-    alt: "Trẻ em vui chơi",
+    alt: "Hoạt động thiện nguyện",
   },
   {
     id: 2,
     title: "Giáo dục",
     subtitle: "là chìa khóa tương lai",
     description:
-      "Hỗ trợ học bổng, xây dựng trường học và cung cấp tài liệu học tập cho hàng nghìn trẻ em vùng cao.",
+      "Hỗ trợ học bổng, xây dựng trường học và cung cấp tài liệu học tập cho học sinh có hoàn cảnh khó khăn.",
     image:
       "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&q=80",
-    alt: "Trẻ em đến trường",
+    alt: "Hỗ trợ giáo dục",
   },
   {
     id: 3,
     title: "Sức khỏe",
-    subtitle: "cho mọi trẻ em",
+    subtitle: "cho cộng đồng",
     description:
-      "Chương trình khám bệnh, phát thuốc miễn phí và hỗ trợ chi phí điều trị cho các em nhỏ cần giúp đỡ.",
+      "Chương trình khám bệnh, phát thuốc miễn phí và hỗ trợ chi phí điều trị cho những người cần giúp đỡ.",
     image:
       "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1920&q=80",
     alt: "Hoạt động y tế",
@@ -133,7 +133,7 @@ const nextSlide = () => {
                     </div>
                     <div class="trust-item mobile-hide">
                       <i class="bi bi-heart-fill"></i>
-                      <span>Đã hỗ trợ 1.000+ trẻ em</span>
+                      <span>Đã hỗ trợ 1.000+ hoàn cảnh</span>
                     </div>
                   </div>
                 </div>

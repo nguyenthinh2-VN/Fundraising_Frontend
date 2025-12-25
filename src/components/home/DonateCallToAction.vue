@@ -15,7 +15,7 @@ import { RouterLink } from "vue-router";
           <h2 class="cta-title">Chung tay vì cộng đồng</h2>
           <p class="cta-description">
             Sự đóng góp của bạn, dù nhỏ bé, cũng có thể thay đổi cuộc đời của
-            một đứa trẻ. Hãy cùng chúng tôi viết tiếp những câu chuyện cổ tích
+            một con người. Hãy cùng chúng tôi viết tiếp những câu chuyện cổ tích
             đời thường.
           </p>
           <div class="cta-buttons">

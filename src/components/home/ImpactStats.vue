@@ -6,7 +6,7 @@ const stats = [
     id: 1,
     number: 5000,
     suffix: "+",
-    label: "Trẻ em được hỗ trợ",
+    label: "Hoàn cảnh được hỗ trợ",
     icon: "people",
   },
   {

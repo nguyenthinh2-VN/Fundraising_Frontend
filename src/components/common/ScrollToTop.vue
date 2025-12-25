@@ -45,16 +45,12 @@ onBeforeUnmount(() => {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary, #b12029) 0%,
-    var(--color-primary-dark, #8a1820) 100%
-  );
+  background: #2a7050;
   border: none;
   color: white;
   font-size: 18px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(177, 32, 41, 0.4);
+  box-shadow: 0 4px 15px #2a7050;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +60,7 @@ onBeforeUnmount(() => {
 
 .scroll-to-top-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(177, 32, 41, 0.5);
+  box-shadow: 0 6px 20px #2a7050;
 }
 
 .scroll-to-top-btn:active {

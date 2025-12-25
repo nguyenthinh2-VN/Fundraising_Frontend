@@ -7,6 +7,7 @@ import AboutPreview from "@/components/home/AboutPreview.vue";
 import ImpactStats from "@/components/home/ImpactStats.vue";
 import DonateCallToAction from "@/components/home/DonateCallToAction.vue";
 import ActivitiesSlider from "@/components/home/ActivitiesSlider.vue";
+import VideoSection from "@/components/home/VideoSection.vue";
 </script>
 
 <template>
@@ -16,6 +17,9 @@ import ActivitiesSlider from "@/components/home/ActivitiesSlider.vue";
 
     <!-- About Preview Section -->
     <AboutPreview />
+
+    <!-- Video Section -->
+    <VideoSection />
 
     <!-- Donation Stats (Tổng tiền + Auto-scroll donors) -->
     <DonationStats />

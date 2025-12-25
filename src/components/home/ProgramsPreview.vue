@@ -6,7 +6,7 @@ const programs = [
     id: 1,
     title: "Hỗ trợ Giáo dục",
     description:
-      "Học bổng, xây dựng trường học và cung cấp tài liệu học tập cho trẻ em vùng cao.",
+      "Học bổng, xây dựng trường học và cung cấp tài liệu học tập cho học sinh có hoàn cảnh khó khăn.",
     icon: "mortarboard",
     path: "/hoat-dong/giao-duc",
     color: "#B12029",
@@ -15,7 +15,7 @@ const programs = [
     id: 2,
     title: "Hỗ trợ Y tế",
     description:
-      "Khám bệnh, phát thuốc miễn phí và hỗ trợ chi phí điều trị cho trẻ em.",
+      "Khám bệnh, phát thuốc miễn phí và hỗ trợ chi phí điều trị cho người có hoàn cảnh khó khăn.",
     icon: "heart-pulse",
     path: "/hoat-dong/y-te",
     color: "#2A7050",

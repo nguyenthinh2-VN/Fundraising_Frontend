@@ -97,7 +97,9 @@ onUnmounted(() => {
           >
             <div class="circle-inner">
               <span class="percent">{{ animatedPercent }}%</span>
-              <span class="label">Khoản quyên góp<br />đến tay trẻ em</span>
+              <span class="label"
+                >Khoản quyên góp<br />đến người cần hỗ trợ</span
+              >
             </div>
           </div>
         </div>
@@ -177,7 +179,7 @@ onUnmounted(() => {
 }
 
 .check-list li i {
-  color: var(--color-primary);
+  color: #2a7050;
   font-size: 1.25rem;
 }
 
