@@ -172,6 +172,20 @@ const newsFaqs = ref([
           Cập nhật những thông tin mới nhất về các chiến dịch, sự kiện và những
           câu chuyện ấm lòng từ cộng đồng.
         </p>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+          <button
+            v-for="cat in categories"
+            :key="cat.key"
+            class="category-tab"
+            :class="{ active: activeCategory === cat.key }"
+            @click="activeCategory = cat.key"
+          >
+            <i :class="`bi bi-${cat.icon}`"></i>
+            {{ cat.label }}
+          </button>
+        </div>
       </div>
     </section>
 
@@ -201,20 +215,6 @@ const newsFaqs = ref([
                 </RouterLink>
               </div>
             </article>
-
-            <!-- Category Tabs -->
-            <div class="category-tabs">
-              <button
-                v-for="cat in categories"
-                :key="cat.key"
-                class="category-tab"
-                :class="{ active: activeCategory === cat.key }"
-                @click="activeCategory = cat.key"
-              >
-                <i :class="`bi bi-${cat.icon}`"></i>
-                {{ cat.label }}
-              </button>
-            </div>
 
             <!-- Latest Articles -->
             <div class="articles-section">
