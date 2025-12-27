@@ -87,6 +87,21 @@ const routes = [
     path: '/dang-ky-tinh-nguyen-vien',
     name: 'volunteer-registration',
     component: () => import('@/views/VolunteerRegistrationView.vue')
+  },
+  {
+    path: '/hop-tac',
+    name: 'partnership',
+    component: () => import('@/views/PartnershipView.vue')
+  },
+  {
+    path: '/dang-ky-chuyen-gia',
+    name: 'expert-registration',
+    component: () => import('@/views/ExpertRegistrationView.vue')
+  },
+  {
+    path: '/tai-lieu',
+    name: 'resources',
+    component: () => import('@/views/ResourcesView.vue')
   }
 ]
 

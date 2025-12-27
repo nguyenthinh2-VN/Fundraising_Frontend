@@ -18,12 +18,18 @@ const contactItems = [
   {
     name: "Liên hệ chung",
     path: "/lien-he",
-    icon: "envelope",
   },
   {
     name: "Đăng ký tình nguyện viên",
     path: "/dang-ky-tinh-nguyen-vien",
-    icon: "heart",
+  },
+  {
+    name: "Hợp tác với chúng tôi",
+    path: "/hop-tac",
+  },
+  {
+    name: "Đăng ký Chuyên gia",
+    path: "/dang-ky-chuyen-gia",
   },
 ];
 
@@ -43,6 +49,11 @@ const transparencyItems = [
     name: "Báo cáo thường niên",
     path: "/bao-cao-thuong-nien",
     icon: "calendar-check",
+  },
+  {
+    name: "Tài liệu & Nghiên cứu",
+    path: "/tai-lieu",
+    icon: "journal-bookmark",
   },
 ];
 

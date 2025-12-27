@@ -8,6 +8,7 @@ import ImpactStats from "@/components/home/ImpactStats.vue";
 import DonateCallToAction from "@/components/home/DonateCallToAction.vue";
 import ActivitiesSlider from "@/components/home/ActivitiesSlider.vue";
 import VideoSection from "@/components/home/VideoSection.vue";
+import TestimonialsSection from "@/components/home/TestimonialsSection.vue";
 </script>
 
 <template>
@@ -26,6 +27,9 @@ import VideoSection from "@/components/home/VideoSection.vue";
 
     <!-- Programs Highlight (3 chương trình chính) -->
     <ProgramsHighlight />
+
+    <!-- Testimonials Section -->
+    <TestimonialsSection />
 
     <!-- Transparency Section -->
     <TransparencySection />
