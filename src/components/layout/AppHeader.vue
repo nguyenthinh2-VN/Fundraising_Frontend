@@ -13,6 +13,20 @@ const navItems = [
   { name: "Giới thiệu", path: "/gioi-thieu" },
 ];
 
+// Dropdown items for "Liên hệ"
+const contactItems = [
+  {
+    name: "Liên hệ chung",
+    path: "/lien-he",
+    icon: "envelope",
+  },
+  {
+    name: "Đăng ký tình nguyện viên",
+    path: "/dang-ky-tinh-nguyen-vien",
+    icon: "heart",
+  },
+];
+
 // Dropdown items for "Minh bạch tài chính"
 const transparencyItems = [
   {
@@ -36,15 +50,28 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
   if (!isMenuOpen.value) {
     isDropdownOpen.value = false;
+    isContactDropdownOpen.value = false;
   }
 };
 
+const isContactDropdownOpen = ref(false);
+
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
+  isContactDropdownOpen.value = false;
+};
+
+const toggleContactDropdown = () => {
+  isContactDropdownOpen.value = !isContactDropdownOpen.value;
+  isDropdownOpen.value = false;
 };
 
 const closeDropdown = () => {
   isDropdownOpen.value = false;
+};
+
+const closeContactDropdown = () => {
+  isContactDropdownOpen.value = false;
 };
 
 // Check if transparency dropdown is active
@@ -52,11 +79,20 @@ const isTransparencyActive = computed(() => {
   return transparencyItems.some((item) => route.path.startsWith(item.path));
 });
 
+// Check if contact dropdown is active
+const isContactActive = computed(() => {
+  return route.path.startsWith("/lien-he");
+});
+
 // Close dropdown when clicking outside
 const handleClickOutside = (event) => {
   const dropdown = document.querySelector(".nav-dropdown-custom");
+  const contactDropdown = document.querySelector(".nav-dropdown-contact");
   if (dropdown && !dropdown.contains(event.target)) {
     isDropdownOpen.value = false;
+  }
+  if (contactDropdown && !contactDropdown.contains(event.target)) {
+    isContactDropdownOpen.value = false;
   }
 };
 
@@ -153,6 +189,48 @@ onUnmounted(() => {
               </ul>
             </li>
 
+            <!-- Custom Vue Dropdown for Liên hệ -->
+            <li class="nav-item nav-dropdown-contact">
+              <button
+                class="nav-link px-3 dropdown-toggle-btn"
+                :class="{ active: isContactActive }"
+                @click.stop="toggleContactDropdown"
+              >
+                Liên hệ
+                <i
+                  class="bi bi-chevron-down dropdown-arrow"
+                  :class="{ rotated: isContactDropdownOpen }"
+                ></i>
+              </button>
+              <ul
+                class="dropdown-menu-custom"
+                :class="{ show: isContactDropdownOpen }"
+              >
+                <template
+                  v-for="(item, index) in contactItems"
+                  :key="item.name"
+                >
+                  <li v-if="index > 0"><hr class="dropdown-divider" /></li>
+                  <li>
+                    <RouterLink
+                      class="dropdown-item"
+                      :to="item.path"
+                      @click="
+                        isMenuOpen = false;
+                        closeContactDropdown();
+                      "
+                    >
+                      <i
+                        v-if="item.icon"
+                        :class="`bi bi-${item.icon} me-2`"
+                      ></i>
+                      {{ item.name }}
+                    </RouterLink>
+                  </li>
+                </template>
+              </ul>
+            </li>
+
             <!-- Donate Button -->
             <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
               <RouterLink
@@ -197,7 +275,8 @@ onUnmounted(() => {
 }
 
 /* Custom dropdown */
-.nav-dropdown-custom {
+.nav-dropdown-custom,
+.nav-dropdown-contact {
   position: relative;
 }
 

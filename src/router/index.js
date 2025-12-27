@@ -77,6 +77,16 @@ const routes = [
     path: '/bao-cao-thuong-nien',
     name: 'annual-report',
     component: () => import('@/views/reports/AnnualReportView.vue')
+  },
+  {
+    path: '/tinh-nguyen-vien',
+    name: 'volunteers',
+    component: () => import('@/views/VolunteersView.vue')
+  },
+  {
+    path: '/dang-ky-tinh-nguyen-vien',
+    name: 'volunteer-registration',
+    component: () => import('@/views/VolunteerRegistrationView.vue')
   }
 ]
 

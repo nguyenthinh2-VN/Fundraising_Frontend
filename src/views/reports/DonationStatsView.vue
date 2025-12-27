@@ -122,6 +122,115 @@ const recentDonors = ref([
 const maxChartValue = computed(() =>
   Math.max(...monthlyData.value.map((d) => d.value))
 );
+
+// ==========================================
+// Donation Lookup Feature
+// ==========================================
+const lookupQuery = ref("");
+const lookupType = ref("code"); // code, email, phone
+const lookupResult = ref(null);
+const lookupError = ref("");
+const isSearching = ref(false);
+
+// Sample donation database for demo
+const donationDatabase = [
+  {
+    code: "PT-2024-001",
+    name: "Nguyễn Văn An",
+    email: "nguyenvanan@example.com",
+    phone: "0901234567",
+    amount: 1000000000,
+    date: "15/01/2024",
+    campaign: "Xây trường vùng cao Hà Giang",
+    status: "completed",
+    usedFor: [
+      { item: "Vật liệu xây dựng", amount: 400000000 },
+      { item: "Nhân công", amount: 300000000 },
+      { item: "Thiết bị nội thất", amount: 200000000 },
+      { item: "Đang triển khai", amount: 100000000 },
+    ],
+  },
+  {
+    code: "PT-2024-156",
+    name: "Công ty XYZ",
+    email: "donate@xyz.com",
+    phone: "0281234567",
+    amount: 100000000,
+    date: "18/06/2024",
+    campaign: "Trái tim cho em 2024",
+    status: "completed",
+    usedFor: [
+      { item: "Chi phí phẫu thuật (2 ca)", amount: 80000000 },
+      { item: "Hậu phẫu & thuốc", amount: 15000000 },
+      { item: "Hỗ trợ gia đình", amount: 5000000 },
+    ],
+  },
+  {
+    code: "PT-2024-200",
+    name: "Trần Thị Bình",
+    email: "binh.tran@email.com",
+    phone: "0912345678",
+    amount: 50000000,
+    date: "20/08/2024",
+    campaign: "Bữa cơm 0 đồng",
+    status: "in_progress",
+    usedFor: [
+      { item: "Nguyên liệu (đã chi)", amount: 35000000 },
+      { item: "Đang sử dụng", amount: 15000000 },
+    ],
+  },
+];
+
+const formatCurrency = (value) => {
+  if (value >= 1000000000) {
+    return (value / 1000000000).toFixed(1).replace(".0", "") + " tỷ";
+  } else if (value >= 1000000) {
+    return Math.round(value / 1000000) + " triệu";
+  }
+  return value.toLocaleString("vi-VN") + " đ";
+};
+
+const searchDonation = () => {
+  lookupError.value = "";
+  lookupResult.value = null;
+
+  if (!lookupQuery.value.trim()) {
+    lookupError.value = "Vui lòng nhập thông tin tra cứu";
+    return;
+  }
+
+  isSearching.value = true;
+
+  // Simulate API call
+  setTimeout(() => {
+    const query = lookupQuery.value.trim().toLowerCase();
+
+    let found = null;
+
+    if (lookupType.value === "code") {
+      found = donationDatabase.find((d) => d.code.toLowerCase() === query);
+    } else if (lookupType.value === "email") {
+      found = donationDatabase.find((d) => d.email.toLowerCase() === query);
+    } else if (lookupType.value === "phone") {
+      found = donationDatabase.find((d) => d.phone === query);
+    }
+
+    if (found) {
+      lookupResult.value = found;
+    } else {
+      lookupError.value =
+        "Không tìm thấy khoản quyên góp. Vui lòng kiểm tra lại thông tin.";
+    }
+
+    isSearching.value = false;
+  }, 800);
+};
+
+const clearSearch = () => {
+  lookupQuery.value = "";
+  lookupResult.value = null;
+  lookupError.value = "";
+};
 </script>
 
 <template>
@@ -148,6 +257,186 @@ const maxChartValue = computed(() =>
             đây là báo cáo chi tiết theo thời gian thực về các hoạt động thiện
             nguyện, đảm bảo mọi đóng góp đều đến đúng nơi cần đến.
           </p>
+        </div>
+
+        <!-- Donation Lookup Section -->
+        <div class="lookup-section">
+          <div class="lookup-card">
+            <div class="lookup-header">
+              <div class="lookup-icon">
+                <i class="bi bi-search"></i>
+              </div>
+              <div>
+                <h3>Tra cứu khoản quyên góp</h3>
+                <p>
+                  Nhập mã giao dịch, email hoặc số điện thoại để xem chi tiết
+                  khoản quyên góp của bạn
+                </p>
+              </div>
+            </div>
+
+            <div class="lookup-form">
+              <div class="lookup-type-tabs">
+                <button
+                  :class="['tab-btn', { active: lookupType === 'code' }]"
+                  @click="lookupType = 'code'"
+                >
+                  <i class="bi bi-hash"></i> Mã giao dịch
+                </button>
+                <button
+                  :class="['tab-btn', { active: lookupType === 'email' }]"
+                  @click="lookupType = 'email'"
+                >
+                  <i class="bi bi-envelope"></i> Email
+                </button>
+                <button
+                  :class="['tab-btn', { active: lookupType === 'phone' }]"
+                  @click="lookupType = 'phone'"
+                >
+                  <i class="bi bi-phone"></i> SĐT
+                </button>
+              </div>
+
+              <div class="lookup-input-row">
+                <input
+                  v-model="lookupQuery"
+                  type="text"
+                  class="lookup-input"
+                  :placeholder="
+                    lookupType === 'code'
+                      ? 'VD: PT-2024-001'
+                      : lookupType === 'email'
+                      ? 'VD: email@example.com'
+                      : 'VD: 0901234567'
+                  "
+                  @keyup.enter="searchDonation"
+                />
+                <button
+                  class="btn-lookup"
+                  @click="searchDonation"
+                  :disabled="isSearching"
+                >
+                  <i v-if="isSearching" class="bi bi-arrow-repeat spin"></i>
+                  <i v-else class="bi bi-search"></i>
+                  {{ isSearching ? "Đang tìm..." : "Tra cứu" }}
+                </button>
+              </div>
+
+              <!-- Error Message -->
+              <div v-if="lookupError" class="lookup-error">
+                <i class="bi bi-exclamation-circle"></i>
+                {{ lookupError }}
+              </div>
+
+              <!-- Search Result -->
+              <div v-if="lookupResult" class="lookup-result">
+                <div class="result-header">
+                  <div class="result-status" :class="lookupResult.status">
+                    <i class="bi bi-check-circle-fill"></i>
+                    {{
+                      lookupResult.status === "completed"
+                        ? "Đã sử dụng hoàn tất"
+                        : "Đang triển khai"
+                    }}
+                  </div>
+                  <button class="btn-clear" @click="clearSearch">
+                    <i class="bi bi-x"></i> Đóng
+                  </button>
+                </div>
+
+                <div class="result-main">
+                  <div class="result-info-grid">
+                    <div class="info-item">
+                      <span class="info-label">Mã giao dịch</span>
+                      <span class="info-value code">{{
+                        lookupResult.code
+                      }}</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="info-label">Nhà tài trợ</span>
+                      <span class="info-value">{{ lookupResult.name }}</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="info-label">Số tiền</span>
+                      <span class="info-value amount">{{
+                        formatCurrency(lookupResult.amount)
+                      }}</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="info-label">Ngày quyên góp</span>
+                      <span class="info-value">{{ lookupResult.date }}</span>
+                    </div>
+                  </div>
+
+                  <div class="result-campaign">
+                    <i class="bi bi-heart-fill"></i>
+                    Dự án: <strong>{{ lookupResult.campaign }}</strong>
+                  </div>
+
+                  <div class="result-usage">
+                    <h5>
+                      <i class="bi bi-pie-chart"></i> Chi tiết sử dụng khoản
+                      quyên góp
+                    </h5>
+                    <div class="usage-list">
+                      <div
+                        v-for="(item, idx) in lookupResult.usedFor"
+                        :key="idx"
+                        class="usage-item"
+                      >
+                        <div class="usage-info">
+                          <span class="usage-name">{{ item.item }}</span>
+                          <div class="usage-bar">
+                            <div
+                              class="usage-bar-fill"
+                              :style="{
+                                width:
+                                  (item.amount / lookupResult.amount) * 100 +
+                                  '%',
+                              }"
+                            ></div>
+                          </div>
+                        </div>
+                        <span class="usage-amount">{{
+                          formatCurrency(item.amount)
+                        }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="result-footer">
+                  <p>
+                    <i class="bi bi-info-circle"></i> Nếu có thắc mắc, vui lòng
+                    liên hệ hotline: <strong>(+84) 906.22.04.22</strong>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Demo hint -->
+              <div v-if="!lookupResult && !lookupError" class="lookup-hint">
+                <i class="bi bi-lightbulb"></i>
+                <span
+                  >Thử tra cứu:
+                  <code
+                    @click="
+                      lookupQuery = 'PT-2024-001';
+                      searchDonation();
+                    "
+                    >PT-2024-001</code
+                  >
+                  hoặc
+                  <code
+                    @click="
+                      lookupQuery = 'PT-2024-156';
+                      searchDonation();
+                    "
+                    >PT-2024-156</code
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Stats Cards -->
@@ -1181,6 +1470,386 @@ const maxChartValue = computed(() =>
 
   .campaign-name {
     font-size: 0.8rem;
+  }
+}
+
+/* Donation Lookup Section */
+.lookup-section {
+  margin-bottom: 2rem;
+}
+
+.lookup-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #dbeafe;
+}
+
+.lookup-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.lookup-icon {
+  width: 50px;
+  height: 50px;
+  background: #3b82f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.lookup-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.25rem;
+}
+
+.lookup-header p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.lookup-type-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.tab-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+.lookup-input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.lookup-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.lookup-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-lookup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.btn-lookup:hover {
+  background: #2563eb;
+}
+
+.btn-lookup:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.lookup-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 0.85rem;
+}
+
+.lookup-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.lookup-hint code {
+  background: #e5e7eb;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: monospace;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lookup-hint code:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+
+/* Lookup Result */
+.lookup-result {
+  margin-top: 1.25rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.result-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.result-status.completed {
+  color: #10b981;
+}
+
+.result-status.in_progress {
+  color: #f59e0b;
+}
+
+.btn-clear {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.btn-clear:hover {
+  background: #f3f4f6;
+}
+
+.result-main {
+  padding: 1.25rem;
+}
+
+.result-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  background: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.info-value.code {
+  font-family: monospace;
+  color: #3b82f6;
+}
+
+.info-value.amount {
+  color: #10b981;
+  font-size: 1rem;
+}
+
+.result-campaign {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #fdf2f8;
+  border-radius: 8px;
+  color: #be185d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.result-campaign i {
+  color: #ec4899;
+}
+
+.result-usage {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.result-usage h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 0.75rem;
+}
+
+.result-usage h5 i {
+  color: #3b82f6;
+}
+
+.usage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.usage-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.usage-info {
+  flex: 1;
+}
+
+.usage-name {
+  display: block;
+  font-size: 0.8rem;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.usage-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.usage-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 3px;
+}
+
+.usage-amount {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 80px;
+  text-align: right;
+}
+
+.result-footer {
+  padding: 0.75rem 1.25rem;
+  background: #fef3c7;
+  border-top: 1px solid #fcd34d;
+}
+
+.result-footer p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #92400e;
+  margin: 0;
+}
+
+/* Responsive for lookup */
+@media (max-width: 768px) {
+  .lookup-header {
+    flex-direction: column;
+  }
+
+  .lookup-type-tabs {
+    flex-wrap: wrap;
+  }
+
+  .lookup-input-row {
+    flex-direction: column;
+  }
+
+  .result-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .result-info-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

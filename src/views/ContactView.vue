@@ -63,7 +63,6 @@ import { RouterLink } from "vue-router";
                     <select class="form-select">
                       <option value="">Chọn chủ đề</option>
                       <option value="donate">Quyên góp</option>
-                      <option value="volunteer">Tình nguyện viên</option>
                       <option value="partnership">Hợp tác</option>
                       <option value="other">Khác</option>
                     </select>
@@ -153,6 +152,27 @@ import { RouterLink } from "vue-router";
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer CTA Section -->
+    <section class="volunteer-cta-section section-padding">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-content">
+            <div class="cta-icon">
+              <i class="bi bi-heart-fill"></i>
+            </div>
+            <div class="cta-text">
+              <h3>Trở thành tình nguyện viên</h3>
+              <p>Tham gia cùng chúng tôi tạo nên sự khác biệt cho cộng đồng</p>
+            </div>
+          </div>
+          <RouterLink to="/dang-ky-tinh-nguyen-vien" class="btn-cta">
+            Đăng ký ngay
+            <i class="bi bi-arrow-right"></i>
+          </RouterLink>
         </div>
       </div>
     </section>
@@ -284,5 +304,90 @@ import { RouterLink } from "vue-router";
 
 .social-link i {
   font-size: 1.25rem;
+}
+
+/* Volunteer CTA Section */
+.volunteer-cta-section {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.cta-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cta-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cta-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #ec4899, #f43f5e);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.cta-text h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.25rem;
+}
+
+.cta-text p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  padding: 0.875rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .cta-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .cta-content {
+    flex-direction: column;
+  }
+
+  .btn-cta {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

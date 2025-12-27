@@ -20,7 +20,7 @@ const slides = [
     description:
       "Hỗ trợ học bổng, xây dựng trường học và cung cấp tài liệu học tập cho học sinh có hoàn cảnh khó khăn.",
     image:
-      "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&q=80",
+      "https://nld.mediacdn.vn/291774122806476800/2021/8/21/5-hinh-them-1-16295530578591473130841.jpg",
     alt: "Hỗ trợ giáo dục",
   },
   {
@@ -46,7 +46,10 @@ onMounted(() => {
         interval: 5000,
         touch: true,
         wrap: true,
+        ride: "carousel",
       });
+      // Start cycling
+      carouselInstance.cycle();
     }
   });
 });

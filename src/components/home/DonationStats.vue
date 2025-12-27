@@ -496,9 +496,11 @@ const currentYear = 2025;
   color: var(--color-text);
   font-size: var(--font-size-sm);
   margin-bottom: 2px;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 .donor-time {

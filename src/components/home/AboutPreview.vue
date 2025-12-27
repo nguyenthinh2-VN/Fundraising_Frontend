@@ -10,7 +10,7 @@ import { RouterLink } from "vue-router";
         <div class="col-lg-6">
           <div class="about-image-wrapper">
             <img
-              src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80"
+              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Hoạt động Quỹ Bông Hồng Nhỏ"
               class="about-image"
             />
