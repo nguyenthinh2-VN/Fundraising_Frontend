@@ -82,7 +82,7 @@ onUnmounted(() => {
             </li>
           </ul>
 
-          <RouterLink to="/bao-cao" class="btn-report">
+          <RouterLink to="/bao-cao-tai-chinh" class="btn-report">
             <i class="bi bi-file-earmark-text"></i>
             Xem báo cáo mới nhất
           </RouterLink>

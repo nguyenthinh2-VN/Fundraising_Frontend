@@ -207,6 +207,7 @@ import { RouterLink } from "vue-router";
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-sm);
+  color: var(--color-white);
 }
 
 .page-subtitle {
