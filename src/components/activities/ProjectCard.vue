@@ -37,67 +37,78 @@ const tagColorClass = computed(() => {
 </script>
 
 <template>
-  <article class="project-card">
-    <div class="card-image">
-      <img :src="project.image" :alt="project.title" />
-      <!-- Badge for status -->
-      <div v-if="project.status === 'active'" class="card-badge badge-active">
-        <i class="bi bi-hourglass-split"></i>
-        {{ project.daysLeft }} ngày còn lại
-      </div>
-      <div v-else class="card-badge badge-completed">
-        <i class="bi bi-check-circle-fill"></i>
-        Hoàn thành {{ project.completedDate }}
-      </div>
-    </div>
-
-    <div class="card-content">
-      <div class="card-header">
-        <span class="card-tag" :class="tagColorClass">
-          {{ project.tagLabel }}
-        </span>
-        <span class="card-location">
-          <i class="bi bi-geo-alt"></i>
-          {{ project.location }}
-        </span>
-      </div>
-
-      <h4 class="card-title">{{ project.title }}</h4>
-      <p class="card-description">{{ project.shortDescription }}</p>
-
-      <div class="card-progress">
-        <div class="progress-info">
-          <span class="raised">{{ formatCurrency(project.raised) }}</span>
-          <span class="target">/ {{ formatCurrency(project.target) }}</span>
+  <RouterLink :to="`/du-an/${project.slug}`" class="project-card-link">
+    <article class="project-card">
+      <div class="card-image">
+        <img :src="project.image" :alt="project.title" />
+        <!-- Badge for status -->
+        <div v-if="project.status === 'active'" class="card-badge badge-active">
+          <i class="bi bi-hourglass-split"></i>
+          {{ project.daysLeft }} ngày còn lại
         </div>
-        <div class="progress-bar">
-          <div
-            class="progress-fill"
-            :style="{ width: Math.min(progressPercent, 100) + '%' }"
-          ></div>
+        <div v-else class="card-badge badge-completed">
+          <i class="bi bi-check-circle-fill"></i>
+          Hoàn thành {{ project.completedDate }}
         </div>
-        <div class="progress-percent">{{ progressPercent }}% đạt được</div>
       </div>
 
-      <div class="card-footer">
-        <RouterLink
-          v-if="project.status === 'active'"
-          to="/quyen-gop"
-          class="btn-donate"
-        >
-          <i class="bi bi-heart-fill"></i>
-          Quyên góp
-        </RouterLink>
-        <button v-else class="btn-detail">
-          <i class="bi bi-eye"></i>
-          Xem chi tiết
-        </button>
+      <div class="card-content">
+        <div class="card-header">
+          <span class="card-tag" :class="tagColorClass">
+            {{ project.tagLabel }}
+          </span>
+          <span class="card-location">
+            <i class="bi bi-geo-alt"></i>
+            {{ project.location }}
+          </span>
+        </div>
+
+        <h4 class="card-title">{{ project.title }}</h4>
+        <p class="card-description">{{ project.shortDescription }}</p>
+
+        <div class="card-progress">
+          <div class="progress-info">
+            <span class="raised">{{ formatCurrency(project.raised) }}</span>
+            <span class="target">/ {{ formatCurrency(project.target) }}</span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              :style="{ width: Math.min(progressPercent, 100) + '%' }"
+            ></div>
+          </div>
+          <div class="progress-percent">{{ progressPercent }}% đạt được</div>
+        </div>
+
+        <div class="card-footer">
+          <template v-if="project.status === 'active'">
+            <span class="btn-detail">
+              <i class="bi bi-eye"></i>
+              Xem chi tiết
+            </span>
+            <span class="btn-donate">
+              <i class="bi bi-heart-fill"></i>
+              Quyên góp
+            </span>
+          </template>
+          <span v-else class="btn-detail btn-detail-full">
+            <i class="bi bi-eye"></i>
+            Xem chi tiết
+          </span>
+        </div>
       </div>
-    </div>
-  </article>
+    </article>
+  </RouterLink>
 </template>
 
 <style scoped>
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
 .project-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
@@ -107,6 +118,7 @@ const tagColorClass = computed(() => {
   height: 100%;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .project-card:hover {
@@ -281,6 +293,8 @@ const tagColorClass = computed(() => {
 
 .card-footer {
   margin-top: auto;
+  display: flex;
+  gap: var(--spacing-sm);
 }
 
 .btn-donate,
@@ -289,7 +303,7 @@ const tagColorClass = computed(() => {
   align-items: center;
   justify-content: center;
   gap: var(--spacing-xs);
-  width: 100%;
+  flex: 1;
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
@@ -311,13 +325,18 @@ const tagColorClass = computed(() => {
 }
 
 .btn-detail {
-  background: var(--color-background-alt);
+  background: var(--color-white);
   color: var(--color-text);
   border: 1px solid var(--color-background-alt);
 }
 
 .btn-detail:hover {
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-detail-full {
+  flex: 1;
+  width: 100%;
 }
 </style>

@@ -49,6 +49,11 @@ const routes = [
     component: () => import('@/views/ActivitiesView.vue')
   },
   {
+    path: '/du-an/:slug',
+    name: 'project-detail',
+    component: () => import('@/views/ProjectDetailView.vue')
+  },
+  {
     path: '/bao-cao-tai-chinh',
     name: 'reports',
     component: () => import('@/views/reports/ReportsView.vue')

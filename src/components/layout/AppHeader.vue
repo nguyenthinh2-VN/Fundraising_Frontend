@@ -122,10 +122,17 @@ onUnmounted(() => {
       <div class="container">
         <!-- Logo -->
         <RouterLink class="navbar-brand d-flex align-items-center" to="/">
+          <!-- Desktop Logo -->
           <img
             src="https://littlerosesfoundation.org/wp-content/uploads/2022/08/df.png"
             alt="Little Roses Foundation"
-            class="logo-img"
+            class="logo-img logo-desktop"
+          />
+          <!-- Mobile Logo -->
+          <img
+            src="/Logo_Mobile/logo.webp"
+            alt="Little Roses Foundation"
+            class="logo-img logo-mobile"
           />
         </RouterLink>
 
@@ -273,6 +280,15 @@ onUnmounted(() => {
   width: auto;
 }
 
+/* Logo visibility */
+.logo-mobile {
+  display: none;
+}
+
+.logo-desktop {
+  display: block;
+}
+
 .nav-link {
   font-weight: 500;
   color: #333 !important;
@@ -388,6 +404,15 @@ onUnmounted(() => {
 
 /* Mobile styles */
 @media (max-width: 991.98px) {
+  /* Logo visibility for mobile */
+  .logo-mobile {
+    display: block;
+  }
+
+  .logo-desktop {
+    display: none;
+  }
+
   .navbar-collapse {
     padding: 1rem 0.85rem;
   }

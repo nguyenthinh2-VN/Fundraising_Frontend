@@ -7,6 +7,9 @@ import projectsData from "@/data/projects.json";
 
 // Filter states
 const activeCategory = ref("all");
+const searchQuery = ref("");
+const startDateFilter = ref("");
+const endDateFilter = ref("");
 
 // Categories for filter
 const categories = [
@@ -17,21 +20,75 @@ const categories = [
   { key: "fundraising", label: "Gây quỹ", icon: "piggy-bank" },
 ];
 
-// Separate active and completed projects
-const activeProjects = computed(() => {
-  return projectsData.filter((project) => {
+// Filter projects by all criteria
+const filterProjects = (projects) => {
+  return projects.filter((project) => {
+    // Category match
     const categoryMatch =
       activeCategory.value === "all" || project.tag === activeCategory.value;
-    return categoryMatch && project.status === "active";
+
+    // Search match (title, location, shortDescription)
+    const searchLower = searchQuery.value.toLowerCase().trim();
+    const searchMatch =
+      !searchLower ||
+      project.title.toLowerCase().includes(searchLower) ||
+      project.location.toLowerCase().includes(searchLower) ||
+      project.shortDescription?.toLowerCase().includes(searchLower);
+
+    // Date range match
+    let dateMatch = true;
+    if (startDateFilter.value || endDateFilter.value) {
+      const projectStart = project.startDate
+        ? new Date(project.startDate)
+        : null;
+      const filterStart = startDateFilter.value
+        ? new Date(startDateFilter.value)
+        : null;
+      const filterEnd = endDateFilter.value
+        ? new Date(endDateFilter.value)
+        : null;
+
+      if (projectStart) {
+        if (filterStart && projectStart < filterStart) {
+          dateMatch = false;
+        }
+        if (filterEnd && projectStart > filterEnd) {
+          dateMatch = false;
+        }
+      }
+    }
+
+    return categoryMatch && searchMatch && dateMatch;
   });
+};
+
+// Separate active and completed projects
+const activeProjects = computed(() => {
+  const active = projectsData.filter((p) => p.status === "active");
+  return filterProjects(active);
 });
 
 const completedProjects = computed(() => {
-  return projectsData.filter((project) => {
-    const categoryMatch =
-      activeCategory.value === "all" || project.tag === activeCategory.value;
-    return categoryMatch && project.status === "completed";
-  });
+  const completed = projectsData.filter((p) => p.status === "completed");
+  return filterProjects(completed);
+});
+
+// Clear all filters
+const clearFilters = () => {
+  searchQuery.value = "";
+  startDateFilter.value = "";
+  endDateFilter.value = "";
+  activeCategory.value = "all";
+};
+
+// Check if any filter is active
+const hasActiveFilters = computed(() => {
+  return (
+    searchQuery.value ||
+    startDateFilter.value ||
+    endDateFilter.value ||
+    activeCategory.value !== "all"
+  );
 });
 
 // Stats computed
@@ -173,6 +230,48 @@ const scrollToSection = (sectionId) => {
                 @click="scrollToSection('completed-section')"
               >
                 Đã hoàn thành
+              </button>
+            </div>
+          </div>
+
+          <!-- Search & Date Filters -->
+          <div class="search-filter-bar">
+            <div class="search-box">
+              <i class="bi bi-search"></i>
+              <input
+                v-model="searchQuery"
+                type="text"
+                placeholder="Tìm kiếm dự án theo tên, địa điểm..."
+                class="search-input"
+              />
+              <button
+                v-if="searchQuery"
+                class="clear-search"
+                @click="searchQuery = ''"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+            <div class="date-filters">
+              <div class="date-input-group">
+                <label>Từ ngày</label>
+                <input
+                  v-model="startDateFilter"
+                  type="date"
+                  class="date-input"
+                />
+              </div>
+              <div class="date-input-group">
+                <label>Đến ngày</label>
+                <input v-model="endDateFilter" type="date" class="date-input" />
+              </div>
+              <button
+                v-if="hasActiveFilters"
+                class="clear-filters-btn"
+                @click="clearFilters"
+              >
+                <i class="bi bi-x-circle"></i>
+                Xóa bộ lọc
               </button>
             </div>
           </div>
@@ -570,6 +669,128 @@ const scrollToSection = (sectionId) => {
   color: var(--color-text);
 }
 
+/* Search & Date Filter Bar */
+.search-filter-bar {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 280px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 42px;
+}
+
+.search-box > i {
+  position: absolute;
+  left: 16px;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 44px;
+  border: 1px solid var(--color-background-alt);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  background: var(--color-white);
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(177, 32, 41, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.clear-search {
+  position: absolute;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: var(--color-background-alt);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  transition: all var(--transition-fast);
+}
+
+.clear-search:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.date-filters {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-input-group label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.date-input {
+  padding: 10px 12px;
+  border: 1px solid var(--color-background-alt);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background: var(--color-white);
+  min-width: 150px;
+  transition: all var(--transition-fast);
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.clear-filters-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
 /* Filter Bar */
 .filter-bar {
   margin-bottom: var(--spacing-xl);
@@ -830,6 +1051,34 @@ const scrollToSection = (sectionId) => {
   }
 
   .section-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-filter-bar {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .search-box {
+    min-width: 100%;
+  }
+
+  .date-filters {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .date-input-group {
+    width: 100%;
+  }
+
+  .date-input {
+    width: 100%;
+  }
+
+  .clear-filters-btn {
     width: 100%;
     justify-content: center;
   }
