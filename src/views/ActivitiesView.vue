@@ -326,43 +326,46 @@ const scrollToSection = (sectionId) => {
 
           <!-- Completed Projects List (Horizontal Layout) -->
           <div class="completed-list">
-            <article
+            <RouterLink
               v-for="project in completedProjects"
               :key="project.id"
-              class="completed-card"
+              :to="`/du-an/${project.slug}`"
+              class="completed-card-link"
             >
-              <div class="completed-image">
-                <img :src="project.image" :alt="project.title" />
-              </div>
-              <div class="completed-content">
-                <div class="completed-header-row">
-                  <div class="completed-info">
-                    <h4 class="completed-title">{{ project.title }}</h4>
-                    <p class="completed-meta">
-                      <i class="bi bi-geo-alt"></i> {{ project.location }} |
-                      Hoàn thành: {{ project.completedDate }}
-                    </p>
-                  </div>
-                  <span class="completed-badge">Thành công</span>
+              <article class="completed-card">
+                <div class="completed-image">
+                  <img :src="project.image" :alt="project.title" />
                 </div>
-                <p class="completed-description">
-                  {{ project.shortDescription }}
-                </p>
-                <div class="completed-footer">
-                  <div class="completed-amount">
-                    <span class="amount-label">ĐÃ GIẢI NGÂN</span>
-                    <span class="amount-value">{{
-                      formatCurrency(project.raised)
-                    }}</span>
+                <div class="completed-content">
+                  <div class="completed-header-row">
+                    <div class="completed-info">
+                      <h4 class="completed-title">{{ project.title }}</h4>
+                      <p class="completed-meta">
+                        <i class="bi bi-geo-alt"></i> {{ project.location }} |
+                        Hoàn thành: {{ project.completedDate }}
+                      </p>
+                    </div>
+                    <span class="completed-badge">Thành công</span>
                   </div>
-                  <a href="#" class="report-link">
-                    <i class="bi bi-file-earmark-text"></i>
-                    Xem sao kê & báo cáo
-                  </a>
-                  <button class="btn-view-photos">Xem ảnh thực tế</button>
+                  <p class="completed-description">
+                    {{ project.shortDescription }}
+                  </p>
+                  <div class="completed-footer">
+                    <div class="completed-amount">
+                      <span class="amount-label">ĐÃ GIẢI NGÂN</span>
+                      <span class="amount-value">{{
+                        formatCurrency(project.raised)
+                      }}</span>
+                    </div>
+                    <span class="report-link">
+                      <i class="bi bi-file-earmark-text"></i>
+                      Xem sao kê & báo cáo
+                    </span>
+                    <span class="btn-view-photos">Xem ảnh thực tế</span>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </RouterLink>
           </div>
 
           <!-- Empty State -->
@@ -847,6 +850,12 @@ const scrollToSection = (sectionId) => {
   gap: var(--spacing-lg);
 }
 
+.completed-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .completed-card {
   display: flex;
   background: var(--color-white);
@@ -855,6 +864,7 @@ const scrollToSection = (sectionId) => {
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-background-alt);
   transition: all var(--transition-base);
+  cursor: pointer;
 }
 
 .completed-card:hover {
