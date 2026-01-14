@@ -165,7 +165,7 @@ const currentYear = 2025;
               </div>
 
               <div class="donors-footer">
-                <a href="/quyen-gop" class="view-all-link">
+                <a href="/thong-ke-quyen-gop" class="view-all-link">
                   Xem tất cả đóng góp
                   <i class="bi bi-arrow-right"></i>
                 </a>

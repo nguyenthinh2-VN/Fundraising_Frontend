@@ -1,5 +1,6 @@
 <script setup>
 import HeroCarousel from "@/components/home/HeroCarousel.vue";
+import SponsorsMarquee from "@/components/home/SponsorsMarquee.vue";
 import DonationStats from "@/components/home/DonationStats.vue";
 import ProgramsHighlight from "@/components/home/ProgramsHighlight.vue";
 import TransparencySection from "@/components/home/TransparencySection.vue";
@@ -15,6 +16,9 @@ import TestimonialsSection from "@/components/home/TestimonialsSection.vue";
   <div class="home-page">
     <!-- Hero Carousel -->
     <HeroCarousel />
+
+    <!-- Sponsors Marquee -->
+    <SponsorsMarquee />
 
     <!-- About Preview Section -->
     <AboutPreview />

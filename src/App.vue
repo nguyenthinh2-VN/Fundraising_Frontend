@@ -2,6 +2,7 @@
 import AppHeader from "@/components/layout/AppHeader.vue";
 import AppFooter from "@/components/layout/AppFooter.vue";
 import ScrollToTop from "@/components/common/ScrollToTop.vue";
+import ChatWidget from "@/components/common/ChatWidget.vue";
 </script>
 
 <template>
@@ -19,6 +20,9 @@ import ScrollToTop from "@/components/common/ScrollToTop.vue";
 
     <!-- Scroll to Top Button -->
     <ScrollToTop />
+
+    <!-- AI Chatbot Widget -->
+    <ChatWidget />
   </div>
 </template>
 

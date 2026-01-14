@@ -5,33 +5,39 @@ import { onMounted, ref } from "vue";
 const slides = [
   {
     id: 1,
+    quote: '"Mỗi đứa trẻ đều xứng đáng có một tương lai tươi sáng"',
     title: "Thắp sáng nụ cười,",
     subtitle: "ươm mầm tương lai",
     description:
-      "Chúng tôi cam kết 100% minh bạch trong từng khoản đóng góp, mang lại sự hỗ trợ thiết thực nhất cho những mảnh đời khó khăn trên khắp Việt Nam.",
+      "Từ những bản làng xa xôi đến các vùng khó khăn, chúng tôi mang đến cơ hội học tập và chăm sóc sức khỏe cho hàng nghìn trẻ em Việt Nam.",
     image:
       "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80",
     alt: "Hoạt động thiện nguyện",
+    story: "Hành trình 4 năm đồng hành cùng hơn 1.000 hoàn cảnh khó khăn",
   },
   {
     id: 2,
+    quote: '"Còn chữ là cánh cửa mở ra thế giới"',
     title: "Giáo dục",
     subtitle: "là chìa khóa tương lai",
     description:
-      "Hỗ trợ học bổng, xây dựng trường học và cung cấp tài liệu học tập cho học sinh có hoàn cảnh khó khăn.",
+      "Mỗi cuốn sách được trao đi, mỗi ngôi trường được xây dựng là một ước mơ được chắp cánh bay cao.",
     image:
       "https://nld.mediacdn.vn/291774122806476800/2021/8/21/5-hinh-them-1-16295530578591473130841.jpg",
     alt: "Hỗ trợ giáo dục",
+    story: "Đã trao 500+ suất học bổng cho học sinh vượt khó",
   },
   {
     id: 3,
-    title: "Sức khỏe",
-    subtitle: "cho cộng đồng",
+    quote: '"Sức khỏe là món quà quý giá nhất"',
+    title: "Chăm sóc",
+    subtitle: "từng mảnh đời",
     description:
-      "Chương trình khám bệnh, phát thuốc miễn phí và hỗ trợ chi phí điều trị cho những người cần giúp đỡ.",
+      "Những chuyến khám bệnh, những viên thuốc được trao tay là niềm hy vọng cho bao người ở vùng sâu vùng xa.",
     image:
       "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1920&q=80",
     alt: "Hoạt động y tế",
+    story: "Đã tổ chức 50+ chuyến khám chữa bệnh miễn phí",
   },
 ];
 
@@ -106,6 +112,11 @@ const nextSlide = () => {
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-lg-10 col-xl-8 text-center">
+                  <!-- Quote -->
+                  <p class="carousel-quote">
+                    {{ slide.quote }}
+                  </p>
+
                   <h1 class="carousel-title">
                     {{ slide.title }}<br />
                     <span class="carousel-subtitle">{{ slide.subtitle }}</span>
@@ -113,30 +124,37 @@ const nextSlide = () => {
                   <p class="carousel-description">
                     {{ slide.description }}
                   </p>
+
+                  <!-- Story Badge -->
+                  <div class="story-badge">
+                    <i class="bi bi-stars"></i>
+                    <span>{{ slide.story }}</span>
+                  </div>
+
+                  <!-- CTA Buttons - More storytelling focused -->
                   <div class="carousel-buttons">
-                    <RouterLink
-                      to="/quyen-gop"
-                      class="btn btn-donate-hero me-3"
-                    >
-                      Quyên góp ngay
+                    <RouterLink to="/hoat-dong" class="btn btn-explore">
+                      <i class="bi bi-arrow-right-circle me-2"></i>
+                      Khám phá câu chuyện
                     </RouterLink>
                     <RouterLink to="/gioi-thieu" class="btn btn-learn-more">
-                      Tìm hiểu thêm
+                      Về chúng tôi
                     </RouterLink>
                   </div>
+
                   <!-- Trust Signals -->
                   <div class="trust-signals">
                     <div class="trust-item">
-                      <i class="bi bi-file-earmark-check"></i>
-                      <span>Công khai sao kê hàng tháng</span>
+                      <i class="bi bi-shield-check"></i>
+                      <span>100% minh bạch</span>
                     </div>
                     <div class="trust-item">
                       <i class="bi bi-geo-alt-fill"></i>
-                      <span>Hoạt động tại Việt Nam từ 2021</span>
+                      <span>Hoạt động từ 2021</span>
                     </div>
                     <div class="trust-item mobile-hide">
                       <i class="bi bi-heart-fill"></i>
-                      <span>Đã hỗ trợ 1.000+ hoàn cảnh</span>
+                      <span>1.000+ hoàn cảnh được hỗ trợ</span>
                     </div>
                   </div>
                 </div>
@@ -216,7 +234,7 @@ const nextSlide = () => {
   font-weight: var(--font-weight-bold);
   color: var(--color-white);
   line-height: 1.2;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -225,12 +243,43 @@ const nextSlide = () => {
   color: var(--color-white);
 }
 
+/* Quote Style */
+.carousel-quote {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.95);
+  font-style: italic;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-md);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
 .carousel-description {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 700px;
-  margin: 0 auto var(--spacing-xl);
-  line-height: 1.6;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+  margin: 0 auto var(--spacing-md);
+  line-height: 1.7;
+}
+
+/* Story Badge */
+.story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.story-badge i {
+  color: #fbbf24;
+  font-size: 1rem;
 }
 
 .carousel-buttons {
@@ -238,22 +287,29 @@ const nextSlide = () => {
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
-.btn-donate-hero {
-  background-color: var(--color-primary);
+/* Explore Button - Primary CTA */
+.btn-explore {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
   color: var(--color-white) !important;
   font-weight: var(--font-weight-semibold);
-  padding: 1rem 2rem;
+  padding: 0.9rem 1.8rem;
   border-radius: var(--radius-full);
   border: none;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   transition: all var(--transition-base);
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-.btn-donate-hero:hover {
-  background-color: var(--color-primary-dark);
+.btn-explore:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(177, 32, 41, 0.4);
 }
@@ -349,18 +405,32 @@ const nextSlide = () => {
 /* Responsive */
 @media (max-width: 768px) {
   .carousel-item {
-    height: 80vh;
-    min-height: 500px;
+    height: 85vh;
+    min-height: 550px;
+  }
+
+  .carousel-quote {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-sm);
   }
 
   .carousel-title {
-    display: none;
+    font-size: 2rem;
   }
 
-  .btn-donate-hero,
+  .carousel-description {
+    font-size: 0.95rem;
+  }
+
+  .story-badge {
+    font-size: var(--font-size-xs);
+    padding: 0.5rem 1rem;
+  }
+
+  .btn-explore,
   .btn-learn-more {
-    padding: 0.75rem 1.5rem;
-    font-size: var(--font-size-base);
+    padding: 0.7rem 1.3rem;
+    font-size: var(--font-size-sm);
   }
 
   /* Hide controls on mobile - use swipe instead */
@@ -373,6 +443,7 @@ const nextSlide = () => {
   .trust-signals {
     flex-direction: column;
     gap: 0.5rem;
+    margin-top: var(--spacing-md);
   }
 
   .trust-item.mobile-hide {

@@ -117,6 +117,27 @@ const submitComment = () => {
     isSubmitting.value = false;
   }, 500);
 };
+
+// Share comment
+const shareComment = async (comment) => {
+  const shareText = `"${comment.content}" - ${comment.userName} về dự án ${props.project.title}`;
+  const shareData = {
+    title: `Bình luận của ${comment.userName}`,
+    text: shareText,
+    url: window.location.href,
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log("Share cancelled");
+    }
+  } else {
+    navigator.clipboard.writeText(`${shareText}\n${window.location.href}`);
+    alert("Đã copy bình luận vào clipboard!");
+  }
+};
 </script>
 
 <template>
@@ -187,6 +208,10 @@ const submitComment = () => {
             <button class="action-btn reply-btn">
               <i class="bi bi-reply"></i>
               <span>Trả lời</span>
+            </button>
+            <button class="action-btn share-btn" @click="shareComment(comment)">
+              <i class="bi bi-share"></i>
+              <span>Chia sẻ</span>
             </button>
           </div>
         </div>
@@ -414,6 +439,14 @@ const submitComment = () => {
 
 .like-btn.liked i {
   color: var(--color-primary);
+}
+
+.share-btn:hover {
+  color: #1877f2;
+}
+
+.share-btn:hover i {
+  color: #1877f2;
 }
 
 /* Load More */

@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .scroll-to-top-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 100px;
   right: 30px;
   width: 45px;
   height: 45px;
@@ -81,8 +81,8 @@ onBeforeUnmount(() => {
 /* Responsive */
 @media (max-width: 768px) {
   .scroll-to-top-btn {
-    bottom: 20px;
-    right: 20px;
+    bottom: 80px;
+    right: 17px;
     width: 40px;
     height: 40px;
     font-size: 16px;

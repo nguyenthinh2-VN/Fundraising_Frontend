@@ -1,6 +1,7 @@
 <script setup>
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { RouterLink } from "vue-router";
+import DonationModal from "@/components/common/DonationModal.vue";
 
 const props = defineProps({
   project: {
@@ -8,6 +9,17 @@ const props = defineProps({
     required: true,
   },
 });
+
+// Donation Modal state
+const showDonationModal = ref(false);
+
+const openDonationModal = () => {
+  showDonationModal.value = true;
+};
+
+const closeDonationModal = () => {
+  showDonationModal.value = false;
+};
 
 // Format date
 const formatDate = (dateString) => {
@@ -114,14 +126,14 @@ const projectDuration = computed(() => {
 
     <!-- CTA Button -->
     <div class="sidebar-card cta-card">
-      <RouterLink
+      <button
         v-if="project.status === 'active'"
-        :to="`/quyen-gop?project=${project.slug}`"
         class="btn-donate"
+        @click="openDonationModal"
       >
         <i class="bi bi-heart-fill"></i>
         Quyên góp ngay
-      </RouterLink>
+      </button>
       <div v-else class="completed-message">
         <i class="bi bi-check-circle-fill"></i>
         <span>Dự án đã hoàn thành</span>
@@ -143,6 +155,14 @@ const projectDuration = computed(() => {
         </div>
       </div>
     </div>
+
+    <!-- Donation Modal -->
+    <DonationModal
+      :show="showDonationModal"
+      :projectSlug="project.slug"
+      :projectTitle="project.title"
+      @close="closeDonationModal"
+    />
   </aside>
 </template>
 
