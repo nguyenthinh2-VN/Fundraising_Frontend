@@ -110,8 +110,8 @@ const nextSlide = () => {
           <!-- Content -->
           <div class="carousel-caption-custom">
             <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-lg-10 col-xl-8 text-center">
+              <div class="row">
+                <div class="col-lg-8 col-xl-7">
                   <!-- Quote -->
                   <p class="carousel-quote">
                     {{ slide.quote }}
@@ -226,6 +226,7 @@ const nextSlide = () => {
   transform: translateY(-50%);
   z-index: 10;
   padding: 0 var(--spacing-md);
+  text-align: left;
 }
 
 .carousel-title {
@@ -257,7 +258,7 @@ const nextSlide = () => {
   font-size: clamp(1rem, 2vw, 1.15rem);
   color: rgba(255, 255, 255, 0.85);
   max-width: 650px;
-  margin: 0 auto var(--spacing-md);
+  margin: 0 0 var(--spacing-md) 0;
   line-height: 1.7;
 }
 
@@ -284,7 +285,7 @@ const nextSlide = () => {
 
 .carousel-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
@@ -454,7 +455,7 @@ const nextSlide = () => {
 /* Trust Signals */
 .trust-signals {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 2rem;
   margin-top: 2rem;

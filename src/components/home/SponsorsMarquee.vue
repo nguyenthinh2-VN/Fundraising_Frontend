@@ -96,6 +96,9 @@ const sponsors = [
 
 <template>
   <section class="sponsors-marquee">
+    <div class="container">
+      <h2 class="sponsors-title">Các đối tác & Nhà hảo tâm</h2>
+    </div>
     <div class="marquee-container">
       <div class="marquee-track">
         <div class="marquee-content">
@@ -127,6 +130,15 @@ const sponsors = [
   padding: var(--spacing-2xl) 0;
   border-bottom: 1px solid #eee;
   overflow: hidden;
+}
+
+.sponsors-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: rgb(36, 114, 65);
+  margin-bottom: var(--spacing-xl);
+  margin-top: 0;
 }
 
 .marquee-container {

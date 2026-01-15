@@ -79,10 +79,12 @@ const recentDonors = ref([
   {
     id: 1,
     name: "Nguyễn Văn A.",
-    company: "VND 2024C",
+    time: "1 phút trước",
     amount: "+ 500.000đ",
     initial: "N",
     color: "#1a1a1a",
+    projectId: 1,
+    projectTitle: "Xây trường bản Nậm Cần",
   },
   {
     id: 2,
@@ -91,6 +93,8 @@ const recentDonors = ref([
     amount: "+ 2.000.000đ",
     initial: "T",
     color: "#b12029",
+    projectId: 4,
+    projectTitle: "Mổ tim miễn phí cho bé An",
   },
   {
     id: 3,
@@ -99,6 +103,8 @@ const recentDonors = ref([
     amount: "+ 100.000đ",
     initial: "A",
     color: "#6b7280",
+    projectId: 3,
+    projectTitle: "Học bổng vượt khó 2024",
   },
   {
     id: 4,
@@ -107,6 +113,8 @@ const recentDonors = ref([
     amount: "+ 50.000.000đ",
     initial: "C",
     color: "#3b82f6",
+    projectId: 10,
+    projectTitle: "Đêm nhạc thiện nguyện 2024",
   },
   {
     id: 5,
@@ -115,6 +123,8 @@ const recentDonors = ref([
     amount: "+ 200.000đ",
     initial: "L",
     color: "#10b981",
+    projectId: 7,
+    projectTitle: "Bữa cơm có thịt vùng cao",
   },
 ]);
 
@@ -690,6 +700,10 @@ const clearSearch = () => {
                   <span class="donor-time">{{
                     donor.company || donor.time
                   }}</span>
+                  <span class="donor-project">
+                    <i class="bi bi-heart-fill"></i>
+                    {{ donor.projectTitle }}
+                  </span>
                 </div>
                 <span class="donor-amount">{{ donor.amount }}</span>
               </div>
@@ -1403,6 +1417,22 @@ const clearSearch = () => {
 .donor-time {
   font-size: 0.75rem;
   color: #9ca3af;
+  display: block;
+}
+
+.donor-project {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  color: #dc2626;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.donor-project i {
+  font-size: 0.65rem;
+  color: #dc2626;
 }
 
 .donor-amount {
